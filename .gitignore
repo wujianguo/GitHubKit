@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+project.xcworkspace/
 
 ## Various settings
 *.pbxuser
@@ -63,3 +64,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+.DS_Store
