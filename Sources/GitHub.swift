@@ -8,6 +8,7 @@
 
 import Foundation
 
-public func req() {
-    
+public func req() -> String {
+    print("req")
+    return "hello"
 }

@@ -21,6 +21,15 @@
 		81DB1B421D221F8E007F114B /* GitHubKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB1B411D221F8E007F114B /* GitHubKitTests.swift */; };
 		81DB1B431D221F8E007F114B /* GitHubKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB1B411D221F8E007F114B /* GitHubKitTests.swift */; };
 		81DB1B441D221F8E007F114B /* GitHubKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB1B411D221F8E007F114B /* GitHubKitTests.swift */; };
+		81DB1B4A1D22232F007F114B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B491D22232F007F114B /* Alamofire.framework */; };
+		81DB1B4C1D222334007F114B /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B4B1D222334007F114B /* ObjectMapper.framework */; };
+		81DB1B4E1D222340007F114B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B4D1D222340007F114B /* Alamofire.framework */; };
+		81DB1B501D222348007F114B /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B4F1D222348007F114B /* ObjectMapper.framework */; };
+		81DB1B521D222353007F114B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B511D222353007F114B /* Alamofire.framework */; };
+		81DB1B541D222359007F114B /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B531D222359007F114B /* ObjectMapper.framework */; };
+		81DB1B561D222376007F114B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B551D222376007F114B /* Alamofire.framework */; };
+		81DB1B581D22237A007F114B /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DB1B571D22237A007F114B /* ObjectMapper.framework */; };
+		81DB1B5B1D2223F1007F114B /* AlamofireObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +74,15 @@
 		81DB1B451D221FB3007F114B /* Info-test.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-test.plist"; sourceTree = "<group>"; };
 		81DB1B471D2221B6007F114B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		81DB1B481D2221B6007F114B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		81DB1B491D22232F007F114B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Alamofire/build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		81DB1B4B1D222334007F114B /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "ObjectMapper/build/Debug-iphoneos/ObjectMapper.framework"; sourceTree = "<group>"; };
+		81DB1B4D1D222340007F114B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Alamofire/build/Debug-appletvos/Alamofire.framework"; sourceTree = "<group>"; };
+		81DB1B4F1D222348007F114B /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "ObjectMapper/build/Debug-appletvos/ObjectMapper.framework"; sourceTree = "<group>"; };
+		81DB1B511D222353007F114B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Alamofire/build/Debug/Alamofire.framework; sourceTree = "<group>"; };
+		81DB1B531D222359007F114B /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = ObjectMapper/build/Debug/ObjectMapper.framework; sourceTree = "<group>"; };
+		81DB1B551D222376007F114B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Alamofire/build/Debug-watchos/Alamofire.framework"; sourceTree = "<group>"; };
+		81DB1B571D22237A007F114B /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "ObjectMapper/build/Debug-watchos/ObjectMapper.framework"; sourceTree = "<group>"; };
+		81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireObjectMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB1B4C1D222334007F114B /* ObjectMapper.framework in Frameworks */,
+				81DB1B4A1D22232F007F114B /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB1B581D22237A007F114B /* ObjectMapper.framework in Frameworks */,
+				81DB1B561D222376007F114B /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB1B501D222348007F114B /* ObjectMapper.framework in Frameworks */,
+				81DB1B4E1D222340007F114B /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB1B541D222359007F114B /* ObjectMapper.framework in Frameworks */,
+				81DB1B521D222353007F114B /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +152,7 @@
 		81DB1AB71D2218B3007F114B = {
 			isa = PBXGroup;
 			children = (
+				81DB1B591D222388007F114B /* Frameworks */,
 				81DB1B021D221C93007F114B /* Metadata */,
 				81DB1B401D221F5F007F114B /* Tests */,
 				81DB1AF31D221950007F114B /* Sources */,
@@ -150,6 +177,7 @@
 		81DB1AF31D221950007F114B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */,
 				81DB1AFD1D221AF6007F114B /* GitHub.swift */,
 				81DB1AF81D221AA5007F114B /* GitHubKit.h */,
 				81DB1AF41D2219AE007F114B /* Info-iOS.plist */,
@@ -176,6 +204,21 @@
 				81DB1B411D221F8E007F114B /* GitHubKitTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		81DB1B591D222388007F114B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81DB1B551D222376007F114B /* Alamofire.framework */,
+				81DB1B531D222359007F114B /* ObjectMapper.framework */,
+				81DB1B511D222353007F114B /* Alamofire.framework */,
+				81DB1B4F1D222348007F114B /* ObjectMapper.framework */,
+				81DB1B4D1D222340007F114B /* Alamofire.framework */,
+				81DB1B4B1D222334007F114B /* ObjectMapper.framework */,
+				81DB1B491D22232F007F114B /* Alamofire.framework */,
+				81DB1B571D22237A007F114B /* ObjectMapper.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +423,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 81DB1AB71D2218B3007F114B;
 			productRefGroup = 81DB1AC41D2218EC007F114B /* Products */;
@@ -454,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB1B5B1D2223F1007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1AFE1D221AF7007F114B /* GitHub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +613,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-iphoneos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -628,6 +678,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-iphoneos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -680,6 +735,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-watchos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-watchos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -739,6 +799,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-watchos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-watchos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -791,6 +856,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-appletvos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-appletvos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -850,6 +920,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug-appletvos",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug-appletvos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -904,6 +979,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -965,6 +1045,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Alamofire/build/Debug",
+					"$(PROJECT_DIR)/ObjectMapper/build/Debug",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1315,6 +1400,7 @@
 				81DB1B211D221E94007F114B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81DB1B2E1D221EA4007F114B /* Build configuration list for PBXNativeTarget "GitHubKit tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1323,6 +1409,7 @@
 				81DB1B301D221EA4007F114B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81DB1B3D1D221EB3007F114B /* Build configuration list for PBXNativeTarget "GitHubKit macOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1331,6 +1418,7 @@
 				81DB1B3F1D221EB3007F114B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
