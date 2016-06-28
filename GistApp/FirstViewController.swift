@@ -8,12 +8,16 @@
 
 import UIKit
 import GitHubKit
+import Alamofire
+import ObjectMapper
 
 class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        GitHubKit.t()
+        rootEndpointRequest().responseObject { (response: Response<RootEndpoint, NSError>) in
+            print(response.result.value)
+        }
     }
 
     override func didReceiveMemoryWarning() {

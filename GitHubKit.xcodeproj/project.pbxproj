@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81CA4DE31D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
+		81CA4DE41D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
+		81CA4DE51D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
+		81CA4DE61D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
+		81CA4DE81D22B9430045F873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE71D22B9430045F873 /* User.swift */; };
+		81CA4DE91D22B9430045F873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE71D22B9430045F873 /* User.swift */; };
+		81CA4DEA1D22B9430045F873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE71D22B9430045F873 /* User.swift */; };
+		81CA4DEB1D22B9430045F873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE71D22B9430045F873 /* User.swift */; };
+		81CA4DED1D22BE930045F873 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DEC1D22BE930045F873 /* File.swift */; };
+		81CA4DEE1D22BE930045F873 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DEC1D22BE930045F873 /* File.swift */; };
+		81CA4DEF1D22BE930045F873 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DEC1D22BE930045F873 /* File.swift */; };
+		81CA4DF01D22BE930045F873 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DEC1D22BE930045F873 /* File.swift */; };
+		81CA4DF21D22C0620045F873 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF11D22C0620045F873 /* Fork.swift */; };
+		81CA4DF31D22C0620045F873 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF11D22C0620045F873 /* Fork.swift */; };
+		81CA4DF41D22C0620045F873 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF11D22C0620045F873 /* Fork.swift */; };
+		81CA4DF51D22C0620045F873 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF11D22C0620045F873 /* Fork.swift */; };
+		81CA4DF71D22C0DC0045F873 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF61D22C0DC0045F873 /* History.swift */; };
+		81CA4DF81D22C0DC0045F873 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF61D22C0DC0045F873 /* History.swift */; };
+		81CA4DF91D22C0DC0045F873 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF61D22C0DC0045F873 /* History.swift */; };
+		81CA4DFA1D22C0DC0045F873 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DF61D22C0DC0045F873 /* History.swift */; };
 		81DB1AF91D221AA5007F114B /* GitHubKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DB1AF81D221AA5007F114B /* GitHubKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81DB1AFA1D221AA5007F114B /* GitHubKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DB1AF81D221AA5007F114B /* GitHubKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81DB1AFB1D221AA5007F114B /* GitHubKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DB1AF81D221AA5007F114B /* GitHubKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +109,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		81CA4DE21D22B8DF0045F873 /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
+		81CA4DE71D22B9430045F873 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		81CA4DEC1D22BE930045F873 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		81CA4DF11D22C0620045F873 /* Fork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fork.swift; sourceTree = "<group>"; };
+		81CA4DF61D22C0DC0045F873 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		81DB1AC31D2218EC007F114B /* GitHubKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DB1AD11D221909007F114B /* GitHubKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DB1ADE1D221919007F114B /* GitHubKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +253,11 @@
 			isa = PBXGroup;
 			children = (
 				81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */,
+				81CA4DE21D22B8DF0045F873 /* Gist.swift */,
+				81CA4DE71D22B9430045F873 /* User.swift */,
+				81CA4DEC1D22BE930045F873 /* File.swift */,
+				81CA4DF11D22C0620045F873 /* Fork.swift */,
+				81CA4DF61D22C0DC0045F873 /* History.swift */,
 				81DB1AFD1D221AF6007F114B /* GitHub.swift */,
 				81DB1AF81D221AA5007F114B /* GitHubKit.h */,
 				81DB1AF41D2219AE007F114B /* Info-iOS.plist */,
@@ -595,8 +625,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CA4DED1D22BE930045F873 /* File.swift in Sources */,
+				81CA4DE81D22B9430045F873 /* User.swift in Sources */,
+				81CA4DF71D22C0DC0045F873 /* History.swift in Sources */,
 				81DB1B5B1D2223F1007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1AFE1D221AF7007F114B /* GitHub.swift in Sources */,
+				81CA4DE31D22B8DF0045F873 /* Gist.swift in Sources */,
+				81CA4DF21D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,8 +639,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CA4DEE1D22BE930045F873 /* File.swift in Sources */,
+				81CA4DE91D22B9430045F873 /* User.swift in Sources */,
+				81CA4DF81D22C0DC0045F873 /* History.swift in Sources */,
 				81DB1BBB1D228172007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1AFF1D221AF7007F114B /* GitHub.swift in Sources */,
+				81CA4DE41D22B8DF0045F873 /* Gist.swift in Sources */,
+				81CA4DF31D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,8 +653,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CA4DEF1D22BE930045F873 /* File.swift in Sources */,
+				81CA4DEA1D22B9430045F873 /* User.swift in Sources */,
+				81CA4DF91D22C0DC0045F873 /* History.swift in Sources */,
 				81DB1BBC1D228172007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1B001D221AF7007F114B /* GitHub.swift in Sources */,
+				81CA4DE51D22B8DF0045F873 /* Gist.swift in Sources */,
+				81CA4DF41D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,8 +667,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CA4DF01D22BE930045F873 /* File.swift in Sources */,
+				81CA4DEB1D22B9430045F873 /* User.swift in Sources */,
+				81CA4DFA1D22C0DC0045F873 /* History.swift in Sources */,
 				81DB1BBD1D228173007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1B011D221AF7007F114B /* GitHub.swift in Sources */,
+				81CA4DE61D22B8DF0045F873 /* Gist.swift in Sources */,
+				81CA4DF51D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,11 +799,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Alamofire/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/ObjectMapper/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -814,11 +860,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Alamofire/build/Debug-iphoneos",
-					"$(PROJECT_DIR)/ObjectMapper/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
