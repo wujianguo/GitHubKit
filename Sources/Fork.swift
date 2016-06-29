@@ -7,26 +7,22 @@
 //
 
 import Foundation
-import Alamofire
 import ObjectMapper
 
-public struct Fork: Mappable {
+public class Fork: ModifiableObject {
     
     public var user: User?
     public var url: String?
     public var id: String?
-    public var created_at: NSDate?
-    public var updated_at: NSDate?
-    
-    public init?(_ map: Map) {
-        
+
+    public required init?(_ map: Map) {
+        super.init(map)
     }
-    
-    mutating public func mapping(map: Map) {
+
+    public override func mapping(map: Map) {
+        super.mapping(map)
         user        <- map["user"]
         url         <- map["url"]
         id          <- map["id"]
-        created_at  <- map["created_at"]
-        updated_at  <- map["updated_at"]
     }
 }

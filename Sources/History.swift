@@ -7,28 +7,27 @@
 //
 
 import Foundation
-
-import Alamofire
 import ObjectMapper
 
-public struct ChangeStatus: Mappable {
+public class ChangeStatus: GitHubObject {
     
     public var deletions: Int?
     public var additions: Int?
     public var total: Int?
     
-    public init?(_ map: Map) {
-        
+    public required init?(_ map: Map) {
+        super.init(map)
     }
     
-    mutating public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map)
         deletions   <- map["deletions"]
         additions   <- map["additions"]
         total       <- map["total"]
     }
 }
 
-public struct History: Mappable {
+public class History: GitHubObject {
 
     public var url: String?
     public var version: String?
@@ -36,11 +35,12 @@ public struct History: Mappable {
     public var committed_at: NSDate?
     public var change_status: ChangeStatus?
     
-    public init?(_ map: Map) {
-        
+    public required init?(_ map: Map) {
+        super.init(map)
     }
     
-    mutating public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map)
         url             <- map["url"]
         version         <- map["version"]
         user            <- map["user"]

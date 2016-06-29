@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Alamofire
 import ObjectMapper
 
-public struct User: Mappable {
+public class User: GitHubObject {
     
     public var login: String?
     public var id: Int?
@@ -30,11 +29,12 @@ public struct User: Mappable {
     public var type: String?
     public var site_admin: Bool?
     
-    public init?(_ map: Map) {
-        
+    public required init?(_ map: Map) {
+        super.init(map)
     }
-    
-    mutating public func mapping(map: Map) {
+
+    public override func mapping(map: Map) {
+        super.mapping(map)
         login               <- map["login"]
         id                  <- map["id"]
         avatar_url          <- map["avatar_url"]

@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Alamofire
 import ObjectMapper
 
-public struct File: Mappable {
+public class File: GitHubObject {
     
     public var filename: String?
     public var type: String?
@@ -18,11 +17,12 @@ public struct File: Mappable {
     public var raw_url: String?
     public var size: Int?
     
-    public init?(_ map: Map) {
-        
+    public required init?(_ map: Map) {
+        super.init(map)
     }
-    
-    mutating public func mapping(map: Map) {
+
+    public override func mapping(map: Map) {
+        super.mapping(map)
         filename    <- map["filename"]
         type        <- map["type"]
         language    <- map["language"]

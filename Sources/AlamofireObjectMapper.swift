@@ -10,9 +10,30 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
+
+extension NSHTTPURLResponse {
+    func resourceCacheInfo() -> (String?, NSDate?) {
+        var e: String?
+        var d: NSDate?
+        if let eTag = self.allHeaderFields["ETag"] as? String {
+            let characterSet = NSMutableCharacterSet.whitespaceCharacterSet()
+            characterSet.addCharactersInString("\"")
+            e = eTag.stringByTrimmingCharactersInSet(characterSet)
+        }
+        if let lastModified = self.allHeaderFields["Last-Modified"] as? String {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "EEEE, dd LLL yyyy hh:mm:ss zzz"
+            if let date = dateFormatter.dateFromString(lastModified) {
+                d = date
+            }
+        }
+        return (e, d)
+    }
+}
+
 extension Request {
 
-    public static func ObjectMapperSerializer<T: Mappable>(keyPath: String?, mapToObject object: T? = nil, context: MapContext? = nil) -> ResponseSerializer<T, NSError> {
+    public static func ObjectMapperSerializer<T: ResourceCacheInfo>(keyPath: String?, mapToObject object: T? = nil, context: MapContext? = nil) -> ResponseSerializer<T, NSError> {
         return ResponseSerializer { request, response, data, error in
             guard error == nil else {
                 return .Failure(error!)
@@ -35,11 +56,23 @@ extension Request {
             } else {
                 JSONToMap = result.value
             }
-
+            let (e, d) = (response?.resourceCacheInfo())!
             if let object = object {
+                if let eTag = e {
+                    object.setEtag(eTag)
+                }
+                if let date = d {
+                    object.setLastModified(date)
+                }
                 Mapper<T>().map(JSONToMap, toObject: object)
                 return .Success(object)
-            } else if let parsedObject = Mapper<T>(context: context).map(JSONToMap){
+            } else if let parsedObject = Mapper<T>(context: context).map(JSONToMap) {
+                if let eTag = e {
+                    parsedObject.setEtag(eTag)
+                }
+                if let date = d {
+                    parsedObject.setLastModified(date)
+                }
                 return .Success(parsedObject)
             }
 
@@ -62,11 +95,11 @@ extension Request {
      - returns: The request.
      */
 
-    public func responseObject<T: Mappable>(queue queue: dispatch_queue_t? = nil, keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil, completionHandler: Response<T, NSError> -> Void) -> Self {
+    public func responseObject<T: ResourceCacheInfo>(queue queue: dispatch_queue_t? = nil, keyPath: String? = nil, mapToObject object: T? = nil, context: MapContext? = nil, completionHandler: Response<T, NSError> -> Void) -> Self {
         return response(queue: queue, responseSerializer: Request.ObjectMapperSerializer(keyPath, mapToObject: object, context: context), completionHandler: completionHandler)
     }
 
-    public static func ObjectMapperArraySerializer<T: Mappable>(keyPath: String?, context: MapContext? = nil) -> ResponseSerializer<[T], NSError> {
+    public static func ObjectMapperArraySerializer<T: ResourceCacheInfo>(keyPath: String?, context: MapContext? = nil) -> ResponseSerializer<[T], NSError> {
         return ResponseSerializer { request, response, data, error in
             guard error == nil else {
                 return .Failure(error!)
@@ -111,7 +144,7 @@ extension Request {
 
      - returns: The request.
      */
-    public func responseArray<T: Mappable>(queue queue: dispatch_queue_t? = nil, keyPath: String? = nil, context: MapContext? = nil, completionHandler: Response<[T], NSError> -> Void) -> Self {
+    public func responseArray<T: ResourceCacheInfo>(queue queue: dispatch_queue_t? = nil, keyPath: String? = nil, context: MapContext? = nil, completionHandler: Response<[T], NSError> -> Void) -> Self {
         return response(queue: queue, responseSerializer: Request.ObjectMapperArraySerializer(keyPath, context: context), completionHandler: completionHandler)
     }
 }

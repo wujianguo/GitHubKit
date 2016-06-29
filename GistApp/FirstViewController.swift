@@ -15,9 +15,15 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootEndpointRequest().responseObject { (response: Response<RootEndpoint, NSError>) in
-            print(response.result.value)
+        GitHubKit.gistRequest("c72608339424e7284ad69a67583cfe8c").responseObject { (response: Response<Gist, NSError>) in
+            debugPrint(response.result.value?.eTag)
+            debugPrint(response.result.value?.lastModified)
+            debugPrint(response.result.value?.created_at)
+            debugPrint(response.result.value?.updated_at)
+            debugPrint(response.result)
+            debugPrint(response.result.value?.owner)
         }
+
     }
 
     override func didReceiveMemoryWarning() {

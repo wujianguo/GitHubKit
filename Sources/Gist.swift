@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-public struct Gist: Mappable {
+public class Gist: ModifiableObject {
     
     public var url: String?
     public var forks_url: String?
@@ -25,16 +25,15 @@ public struct Gist: Mappable {
     public var html_url: String?
     public var git_pull_url: String?
     public var git_push_url: String?
-    public var created_at: NSDate?
-    public var updated_at: NSDate?
     public var forks: [Fork]?
     public var history: [History]?
     
-    public init?(_ map: Map) {
-        
+    required public init?(_ map: Map) {
+        super.init(map)
     }
     
-    mutating public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map)
         url             <- map["url"]
         forks_url       <- map["forks_url"]
         commits_url     <- map["commits_url"]
@@ -42,15 +41,25 @@ public struct Gist: Mappable {
         description     <- map["description"]
         `public`        <- map["public"]
         owner           <- map["owner"]
+//        owner           <- (map["owner"], TransformOf<User, String>(fromJSON: { Mapper<User>().map($0) }, toJSON: { Mapper().toJSONString($0) }))
         truncated       <- map["truncated"]
         comments        <- map["comments"]
         comments_url    <- map["comments_url"]
         html_url        <- map["html_url"]
         git_pull_url    <- map["git_pull_url"]
         git_push_url    <- map["git_push_url"]
-        created_at      <- map["created_at"]
-        updated_at      <- map["updated_at"]
         forks           <- map["forks"]
         history         <- map["history"]
     }
+}
+
+extension RootEndpoint {
+    func gistRequest(gist_id: String? = nil) -> Request {
+        let uri = URITemplate(template: gists_url!)
+        return Alamofire.request(.GET, uri.expandOptional(["gist_id": gist_id]))
+    }
+}
+
+public func gistRequest(gist_id: String? = nil) -> Request {
+    return Manager.sharedInstance.rootEndpoint.gistRequest(gist_id)
 }
