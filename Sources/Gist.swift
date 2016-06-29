@@ -41,7 +41,6 @@ public class Gist: ModifiableObject {
         description     <- map["description"]
         `public`        <- map["public"]
         owner           <- map["owner"]
-//        owner           <- (map["owner"], TransformOf<User, String>(fromJSON: { Mapper<User>().map($0) }, toJSON: { Mapper().toJSONString($0) }))
         truncated       <- map["truncated"]
         comments        <- map["comments"]
         comments_url    <- map["comments_url"]
@@ -54,12 +53,29 @@ public class Gist: ModifiableObject {
 }
 
 extension RootEndpoint {
+    
     func gistRequest(gist_id: String? = nil) -> Request {
         let uri = URITemplate(template: gists_url!)
         return Alamofire.request(.GET, uri.expandOptional(["gist_id": gist_id]))
+    }
+    
+    func publicGistRequest() -> Request {
+        return Alamofire.request(.GET, public_gists_url!)
+    }
+    
+    func starredGistsRequest() -> Request {
+        return Alamofire.request(.GET, starred_gists_url!)
     }
 }
 
 public func gistRequest(gist_id: String? = nil) -> Request {
     return Manager.sharedInstance.rootEndpoint.gistRequest(gist_id)
+}
+
+public func publicGistRequest() -> Request {
+    return Manager.sharedInstance.rootEndpoint.publicGistRequest()
+}
+
+public func starredGistsRequest() -> Request {
+    return Manager.sharedInstance.rootEndpoint.starredGistsRequest()
 }
