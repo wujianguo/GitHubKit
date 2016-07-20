@@ -4,3 +4,6 @@
 [submodule "ObjectMapper"]
 	path = ObjectMapper
 	url = https://github.com/Hearst-DD/ObjectMapper.git
+[submodule "SnapKit"]
+	path = SnapKit
+	url = https://github.com/SnapKit/SnapKit.git

@@ -66,7 +66,7 @@ extension URITemplate {
                 data.removeValueForKey(key)
             }
         }
-        debugPrint(expand(data as! [String: AnyObject]))
+        debugPrint("expandOptional \(expand(data as! [String: AnyObject]))")
         return expand(data as! [String: AnyObject])
     }
 }
