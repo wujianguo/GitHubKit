@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import GitHubKit
+import Alamofire
+import ObjectMapper
 
-class NewsTableViewController: UITableViewController {
-
+class NewsTableViewController: PaginationTableViewController<Event> {
+    
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        tabBarItem = UITabBarItem(title: NSLocalizedString("News", comment: ""), image: UIImage(named: "news"), tag: 0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,26 +28,21 @@ class NewsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+    override var firstRequest: Request {
+        return GitHubKit.eventRequest()
+    }
+    
+    override var tableViewCellIdentifier: String {
+        return "NewsTableViewCellIdentifier"
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.textLabel?.text = "\(items[indexPath.row].actor?.login)"
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

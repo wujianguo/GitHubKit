@@ -7,45 +7,38 @@
 //
 
 import UIKit
+import GitHubKit
+import Alamofire
+import ObjectMapper
 
-class RepositoriesTableViewController: UITableViewController {
 
+class RepositoriesTableViewController: PaginationTableViewController<Gist> {
+
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        tabBarItem = UITabBarItem(title: NSLocalizedString("Repositories", comment: ""), image: UIImage(named: "repositories"), tag: 0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override var firstRequest: Request {
+        return GitHubKit.publicGistRequest()
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    override var tableViewCellIdentifier: String {
+        return "RepositoriesTableViewCellIdentifier"
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.textLabel?.text = "\(items[indexPath.row].owner?.login)"
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

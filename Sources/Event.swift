@@ -10,32 +10,32 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-public enum EventType: CustomStringConvertible {
-    case CommitComment
-    case Create
-    case Delete
-    case Deployment
-    case DeploymentStatus
-    case Download
-    case Follow
-    case Fork
-    case ForkApply
-    case Gist
-    case Gollum
-    case IssueComment
-    case Issues
-    case Member
-    case Membership
-    case PageBuild
-    case Public
-    case PullRequest
-    case PullRequestReviewComment
-    case Push
-    case Release
-    case Repository
-    case Status
-    case TeamAdd
-    case Watch
+public enum EventType: String, CustomStringConvertible {
+    case CommitComment              = "CommitCommentEvent"
+    case Create                     = "CreateEvent"
+    case Delete                     = "DeleteEvent"
+    case Deployment                 = "DeploymentEvent"
+    case DeploymentStatus           = "DeploymentStatusEvent"
+    case Download                   = "DownloadEvent"
+    case Follow                     = "FollowEvent"
+    case Fork                       = "ForkEvent"
+    case ForkApply                  = "ForkApplyEvent"
+    case Gist                       = "GistEvent"
+    case Gollum                     = "GollumEvent"
+    case IssueComment               = "IssueCommentEvent"
+    case Issues                     = "IssuesEvent"
+    case Member                     = "MemberEvent"
+    case Membership                 = "MembershipEvent"
+    case PageBuild                  = "PageBuildEvent"
+    case Public                     = "PublicEvent"
+    case PullRequest                = "PullRequestEvent"
+    case PullRequestReviewComment   = "PullRequestReviewCommentEvent"
+    case Push                       = "PushEvent"
+    case Release                    = "ReleaseEvent"
+    case Repository                 = "RepositoryEvent"
+    case Status                     = "StatusEvent"
+    case TeamAdd                    = "TeamAddEvent"
+    case Watch                      = "WatchEvent"
 
     public var description: String {
         switch self {
@@ -98,9 +98,10 @@ public class Event: GitHubObject {
     public var id: String?
     public var type: EventType?
     public var `public`: Bool?
-    public var create_at: NSDate?
+    public var created_at: NSDate?
     public var actor: User?
     public var org: Organization?
+    public var repo: Repository?
 
     required public init?(_ map: Map) {
         super.init(map)
@@ -111,9 +112,10 @@ public class Event: GitHubObject {
         id          <- map["id"]
         type        <- map["type"]
         `public`    <- map["public"]
-        create_at   <- (map["create_at"], ISO8601DateTransform())
+        created_at  <- (map["created_at"], ISO8601DateTransform())
         actor       <- map["actor"]
         org         <- map["org"]
+        repo        <- map["repo"]
     }
 }
 

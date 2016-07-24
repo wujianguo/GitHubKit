@@ -28,25 +28,32 @@ class Manager {
     }
 }
 
-
-public protocol ResourceCacheInfo: Mappable {
-    func setEtag(eTag: String)
-    func setLastModified(lastModified: NSDate)
+public protocol RFC5988 {
+    var eTag: String? { get set }
+    var lastModified:  NSDate? { get set }
 }
 
+public protocol RFC6570 {
+    var prePageLink: String? { get set }
+    var nextPageLink: String? { get set }
+    var firstPageLink: String? { get set }
+    var lastPageLink: String? { get set }
+}
 
-public class GitHubObject: ResourceCacheInfo {
-
+public class GitHubArrayInfo: RFC5988, RFC6570 {
+    
     public var eTag: String?
     public var lastModified: NSDate?
+    public var prePageLink: String?
+    public var nextPageLink: String?
+    public var firstPageLink: String?
+    public var lastPageLink: String?
+}
 
-    public func setEtag(eTag: String) {
-        self.eTag = eTag;
-    }
-
-    public func setLastModified(lastModified: NSDate) {
-        self.lastModified = lastModified
-    }
+public class GitHubObject: RFC5988, Mappable {
+    
+    public var eTag: String?
+    public var lastModified: NSDate?
 
     required public init?(_ map: Map) {
 
@@ -55,6 +62,10 @@ public class GitHubObject: ResourceCacheInfo {
     public func mapping(map: Map) {
 
     }
+}
+
+public class GitHubArray<T: Mappable>: GitHubArrayInfo {
+    public var array = [T]()    
 }
 
 
@@ -68,21 +79,6 @@ extension URITemplate {
         }
         debugPrint("expandOptional \(expand(data as! [String: AnyObject]))")
         return expand(data as! [String: AnyObject])
-    }
-}
-
-public class ModifiableObject: GitHubObject {
-    public var created_at: NSDate?
-    public var updated_at: NSDate?
-
-    required public init?(_ map: Map) {
-        super.init(map)
-    }
-
-    public override func mapping(map: Map) {
-        super.mapping(map)
-        created_at      <- (map["created_at"], ISO8601DateTransform())
-        updated_at      <- (map["updated_at"], ISO8601DateTransform())
     }
 }
 
@@ -159,3 +155,11 @@ public class RootEndpoint: GitHubObject {
     }
 }
 
+
+public func request(url: String) -> Request {
+    return Alamofire.request(.GET, url)
+}
+
+public var rootEndpoint: RootEndpoint {
+    return Manager.sharedInstance.rootEndpoint
+}

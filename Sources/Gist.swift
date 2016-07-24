@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-public class Gist: ModifiableObject {
+public class Gist: GitHubObject {
     
     public var url: String?
     public var forks_url: String?
@@ -27,6 +27,8 @@ public class Gist: ModifiableObject {
     public var git_push_url: String?
     public var forks: [Fork]?
     public var history: [History]?
+    public var created_at: NSDate?
+    public var updated_at: NSDate?
     
     required public init?(_ map: Map) {
         super.init(map)
@@ -49,6 +51,8 @@ public class Gist: ModifiableObject {
         git_push_url    <- map["git_push_url"]
         forks           <- map["forks"]
         history         <- map["history"]
+        created_at      <- (map["created_at"], ISO8601DateTransform())
+        updated_at      <- (map["updated_at"], ISO8601DateTransform())
     }
 }
 
