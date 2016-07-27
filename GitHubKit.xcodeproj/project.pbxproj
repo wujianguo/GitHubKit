@@ -31,6 +31,13 @@
 		815A31D81D4225EF00E170AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A31D61D4225EF00E170AF /* Repository.swift */; };
 		815A31D91D4225EF00E170AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A31D61D4225EF00E170AF /* Repository.swift */; };
 		815A31DA1D4225EF00E170AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815A31D61D4225EF00E170AF /* Repository.swift */; };
+		815E2E431D4702850042B0CE /* GitHubAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E2E421D4702850042B0CE /* GitHubAccount.swift */; };
+		815E2E631D471F270042B0CE /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815E2E541D471F0C0042B0CE /* SnapKit.framework */; };
+		815E2E641D471F270042B0CE /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 815E2E541D471F0C0042B0CE /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		815E2E6D1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */; };
+		815E2E6E1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */; };
+		815E2E6F1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */; };
+		815E2E701D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */; };
 		81CA4DE31D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
 		81CA4DE41D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
 		81CA4DE51D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
@@ -101,6 +108,69 @@
 			remoteGlobalIDString = 81DB1AC21D2218EC007F114B;
 			remoteInfo = "GitHubKit iOS";
 		};
+		815E2E531D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEBCC9D819CC627D0083B827;
+			remoteInfo = "SnapKit iOS";
+		};
+		815E2E551D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 537DCE921C35CC8800B5B899;
+			remoteInfo = "SnapKit tvOS";
+		};
+		815E2E571D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EECDB37A1AC0C9D4006BBC11;
+			remoteInfo = "SnapKit OSX";
+		};
+		815E2E591D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEBCC9E219CC627E0083B827;
+			remoteInfo = "SnapKit iOS Tests";
+		};
+		815E2E5B1D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 537DCEAF1C35D90A00B5B899;
+			remoteInfo = "SnapKit tvOS Tests";
+		};
+		815E2E5D1D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EECDB3841AC0C9D4006BBC11;
+			remoteInfo = "SnapKit OSX Tests";
+		};
+		815E2E5F1D471F0C0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56A0DC091C859E30005973AB;
+			remoteInfo = "Example-iOS";
+		};
+		815E2E611D471F1A0042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEBCC9D719CC627D0083B827;
+			remoteInfo = "SnapKit iOS";
+		};
+		815E2E651D471F270042B0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEBCC9D719CC627D0083B827;
+			remoteInfo = "SnapKit iOS";
+		};
 		81DB1B1D1D221E94007F114B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81DB1AB81D2218B3007F114B /* Project object */;
@@ -132,6 +202,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8119C5B61D3FC665004B5CC1 /* GitHubKit.framework in Embed Frameworks */,
+				815E2E641D471F270042B0CE /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +225,10 @@
 		815A31CC1D42202D00E170AF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		815A31D11D42249000E170AF /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		815A31D61D4225EF00E170AF /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		815E2E421D4702850042B0CE /* GitHubAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAccount.swift; sourceTree = "<group>"; };
+		815E2E441D4713A60042B0CE /* GitHubApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GitHubApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SnapKit.xcodeproj; path = SnapKit/SnapKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		81CA4DE21D22B8DF0045F873 /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		81CA4DE71D22B9430045F873 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		81CA4DEC1D22BE930045F873 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -198,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8119C5B51D3FC665004B5CC1 /* GitHubKit.framework in Frameworks */,
+				815E2E631D471F270042B0CE /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +343,7 @@
 		8119C5A21D3FC28D004B5CC1 /* GitHubApp */ = {
 			isa = PBXGroup;
 			children = (
+				815E2E481D471EF80042B0CE /* Frameworks */,
 				815A31B01D40A0CC00E170AF /* Resources */,
 				815A31AF1D40A0C500E170AF /* Classes */,
 			);
@@ -276,6 +353,7 @@
 		815A31AF1D40A0C500E170AF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				815E2E3F1D4701D20042B0CE /* Authorization */,
 				81D6A9F41D45067600C2EDE0 /* MainViewController.swift */,
 				81D6A9F21D44C69300C2EDE0 /* PaginationTableViewController.swift */,
 				815A31B61D40DC5000E170AF /* News */,
@@ -294,6 +372,7 @@
 				8119C5A91D3FC28D004B5CC1 /* Main.storyboard */,
 				8119C5B11D3FC28D004B5CC1 /* Info.plist */,
 				8119C5A31D3FC28D004B5CC1 /* AppDelegate.swift */,
+				815E2E441D4713A60042B0CE /* GitHubApp-Bridging-Header.h */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -332,6 +411,36 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		815E2E3F1D4701D20042B0CE /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				815E2E421D4702850042B0CE /* GitHubAccount.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		815E2E481D471EF80042B0CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		815E2E4A1D471F0C0042B0CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				815E2E541D471F0C0042B0CE /* SnapKit.framework */,
+				815E2E561D471F0C0042B0CE /* SnapKit.framework */,
+				815E2E581D471F0C0042B0CE /* SnapKit.framework */,
+				815E2E5A1D471F0C0042B0CE /* SnapKit iOS Tests.xctest */,
+				815E2E5C1D471F0C0042B0CE /* SnapKit tvOS Tests.xctest */,
+				815E2E5E1D471F0C0042B0CE /* SnapKit OSX Tests.xctest */,
+				815E2E601D471F0C0042B0CE /* Example-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		81DB1AB71D2218B3007F114B = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				81DB1BDE1D23A29D007F114B /* RootEndpoint.json */,
+				815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */,
 				81D6A9EB1D446BD400C2EDE0 /* WebLinking.swift */,
 				81DB1BE31D23ADD0007F114B /* URITemplate.swift */,
 				81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */,
@@ -467,7 +577,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				815E2E621D471F1A0042B0CE /* PBXTargetDependency */,
 				8119C5B81D3FC665004B5CC1 /* PBXTargetDependency */,
+				815E2E661D471F270042B0CE /* PBXTargetDependency */,
 			);
 			name = GitHubApp;
 			productName = GitHubApp;
@@ -646,6 +758,12 @@
 			mainGroup = 81DB1AB71D2218B3007F114B;
 			productRefGroup = 81DB1AC41D2218EC007F114B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 815E2E4A1D471F0C0042B0CE /* Products */;
+					ProjectRef = 815E2E491D471F0C0042B0CE /* SnapKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				81DB1AC21D2218EC007F114B /* GitHubKit iOS */,
@@ -659,6 +777,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		815E2E541D471F0C0042B0CE /* SnapKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SnapKit.framework;
+			remoteRef = 815E2E531D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E561D471F0C0042B0CE /* SnapKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SnapKit.framework;
+			remoteRef = 815E2E551D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E581D471F0C0042B0CE /* SnapKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SnapKit.framework;
+			remoteRef = 815E2E571D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E5A1D471F0C0042B0CE /* SnapKit iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SnapKit iOS Tests.xctest";
+			remoteRef = 815E2E591D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E5C1D471F0C0042B0CE /* SnapKit tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SnapKit tvOS Tests.xctest";
+			remoteRef = 815E2E5B1D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E5E1D471F0C0042B0CE /* SnapKit OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SnapKit OSX Tests.xctest";
+			remoteRef = 815E2E5D1D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		815E2E601D471F0C0042B0CE /* Example-iOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-iOS.app";
+			remoteRef = 815E2E5F1D471F0C0042B0CE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8119C59F1D3FC28D004B5CC1 /* Resources */ = {
@@ -736,6 +906,7 @@
 				81D6A9F51D45067600C2EDE0 /* MainViewController.swift in Sources */,
 				815A31C81D40DD6100E170AF /* ProfileTableViewController.swift in Sources */,
 				81D6A9F31D44C69300C2EDE0 /* PaginationTableViewController.swift in Sources */,
+				815E2E431D4702850042B0CE /* GitHubAccount.swift in Sources */,
 				815A31C41D40DD3600E170AF /* ExploreTableViewController.swift in Sources */,
 				815A31BC1D40DCB000E170AF /* NewsTableViewController.swift in Sources */,
 				815A31C21D40DD0E00E170AF /* RepositoriesTableViewController.swift in Sources */,
@@ -749,6 +920,7 @@
 			files = (
 				81DB1BE41D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CD1D42202D00E170AF /* Event.swift in Sources */,
+				815E2E6D1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DED1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DE81D22B9430045F873 /* User.swift in Sources */,
 				81CA4DF71D22C0DC0045F873 /* History.swift in Sources */,
@@ -768,6 +940,7 @@
 			files = (
 				81DB1BE51D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CE1D42202D00E170AF /* Event.swift in Sources */,
+				815E2E6E1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DEE1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DE91D22B9430045F873 /* User.swift in Sources */,
 				81CA4DF81D22C0DC0045F873 /* History.swift in Sources */,
@@ -787,6 +960,7 @@
 			files = (
 				81DB1BE61D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CF1D42202D00E170AF /* Event.swift in Sources */,
+				815E2E6F1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DEF1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DEA1D22B9430045F873 /* User.swift in Sources */,
 				81CA4DF91D22C0DC0045F873 /* History.swift in Sources */,
@@ -806,6 +980,7 @@
 			files = (
 				81DB1BE71D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31D01D42202D00E170AF /* Event.swift in Sources */,
+				815E2E701D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DF01D22BE930045F873 /* File.swift in Sources */,
 				81CA4DEB1D22B9430045F873 /* User.swift in Sources */,
 				81CA4DFA1D22C0DC0045F873 /* History.swift in Sources */,
@@ -850,6 +1025,16 @@
 			isa = PBXTargetDependency;
 			target = 81DB1AC21D2218EC007F114B /* GitHubKit iOS */;
 			targetProxy = 8119C5B71D3FC665004B5CC1 /* PBXContainerItemProxy */;
+		};
+		815E2E621D471F1A0042B0CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SnapKit iOS";
+			targetProxy = 815E2E611D471F1A0042B0CE /* PBXContainerItemProxy */;
+		};
+		815E2E661D471F270042B0CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SnapKit iOS";
+			targetProxy = 815E2E651D471F270042B0CE /* PBXContainerItemProxy */;
 		};
 		81DB1B1E1D221E94007F114B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -933,6 +1118,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wujianguo.GitHubApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "GitHubApp/GitHubApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -978,6 +1164,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wujianguo.GitHubApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "GitHubApp/GitHubApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

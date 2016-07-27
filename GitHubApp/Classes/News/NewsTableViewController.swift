@@ -29,12 +29,16 @@ class NewsTableViewController: PaginationTableViewController<Event> {
 
     // MARK: - Table view data source
         
-    override var firstRequest: Request {
+    override var firstRequest: AuthorizationRequest {
         return GitHubKit.eventRequest()
     }
     
     override var tableViewCellIdentifier: String {
         return "NewsTableViewCellIdentifier"
+    }
+
+    override var tableViewCellClassType: AnyClass? {
+        return PaginationTableViewCell<Event>.self
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

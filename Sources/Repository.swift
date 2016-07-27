@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import ObjectMapper
 
 public class Repository: GitHubObject {
@@ -77,6 +76,8 @@ public class Repository: GitHubObject {
     public var created_at: NSDate?
     public var updated_at: NSDate?
 
+    public var user: User?
+    public var organization: Organization?
 
     required public init?(_ map: Map) {
         super.init(map)
@@ -148,6 +149,16 @@ public class Repository: GitHubObject {
         pushed_at           <- (map["pushed_at"], ISO8601DateTransform())
         created_at          <- (map["created_at"], ISO8601DateTransform())
         updated_at          <- (map["updated_at"], ISO8601DateTransform())
+
+        if let owner = map.JSONDictionary["owner"] as? [String: AnyObject] {
+            if let type = owner["type"] as? String {
+                if type == "user" {
+                    user <- map["owner"]
+                } else if type == "Organization" {
+                    organization <- map["owner"]
+                }
+            }
+        }
     }
 
 }

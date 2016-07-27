@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import ObjectMapper
 
 public enum EventType: String, CustomStringConvertible {
@@ -121,11 +120,11 @@ public class Event: GitHubObject {
 
 extension RootEndpoint {
 
-    func eventRequest() -> Request {
-        return Alamofire.request(.GET, events_url!)
+    func eventRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: events_url!)
     }
 }
 
-public func eventRequest() -> Request {
+public func eventRequest() -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.eventRequest()
 }

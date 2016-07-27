@@ -26,17 +26,21 @@ class RepositoriesTableViewController: PaginationTableViewController<Gist> {
     
     // MARK: - Table view data source
 
-    override var firstRequest: Request {
+    override var firstRequest: AuthorizationRequest {
         return GitHubKit.publicGistRequest()
     }
     
     override var tableViewCellIdentifier: String {
         return "RepositoriesTableViewCellIdentifier"
     }
-    
+
+    override var tableViewCellClassType: AnyClass? {
+        return PaginationTableViewCell<Gist>.self
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        cell.textLabel?.text = "\(items[indexPath.row].owner?.login)"
+        cell.textLabel?.text = "\(items[indexPath.row].user?.login)"
         return cell
     }
 

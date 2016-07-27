@@ -8,6 +8,17 @@
 
 import UIKit
 
+
+extension UIApplication {
+    var topViewController: UIViewController {
+        var topVC = keyWindow!.rootViewController!
+        while (topVC.presentedViewController != nil) {
+            topVC = topVC.presentedViewController!
+        }
+        return topVC
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,8 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        GitHubAccount.sharedInstance
         return true
+    }
+
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return GitHubAccount.openURL(url)
     }
 
     func applicationWillResignActive(application: UIApplication) {

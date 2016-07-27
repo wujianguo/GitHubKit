@@ -16,8 +16,6 @@ extension NSHTTPURLResponse {
         var e: String?
         var d: NSDate?
         if let eTag = self.allHeaderFields["ETag"] as? String {
-//            let characterSet = NSMutableCharacterSet.whitespaceCharacterSet()
-//            characterSet.addCharactersInString("\"")
             e = eTag.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         }
         if let lastModified = self.allHeaderFields["Last-Modified"] as? String {
@@ -60,23 +58,19 @@ extension Request {
 
             if let object = object {
                 if let eTag = e {
-//                    object.setEtag(eTag)
                     object.eTag = eTag
                 }
                 if let date = d {
-//                    object.setLastModified(date)
                     object.lastModified = date
                 }
                 Mapper<T>().map(JSONToMap, toObject: object)
                 return .Success(object)
             } else if let parsedObject = Mapper<T>(context: context).map(JSONToMap) {
                 if let eTag = e {
-//                    parsedObject.setEtag(eTag)
                     parsedObject.eTag = eTag
                 }
                 if let date = d {
                     parsedObject.lastModified = date
-//                    parsedObject.setLastModified(date)
                 }
                 return .Success(parsedObject)
             }

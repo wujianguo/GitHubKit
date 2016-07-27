@@ -26,7 +26,7 @@ public class Fork: GitHubObject {
         user        <- map["user"]
         url         <- map["url"]
         id          <- map["id"]
-        created_at      <- (map["created_at"], ISO8601DateTransform())
-        updated_at      <- (map["updated_at"], ISO8601DateTransform())
+        created_at  <- (map["created_at"], ISO8601DateTransform())
+        updated_at  <- (map["updated_at"], ISO8601DateTransform())
     }
 }

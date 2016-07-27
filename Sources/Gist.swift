@@ -18,7 +18,6 @@ public class Gist: GitHubObject {
     public var id: String?
     public var description: String?
     public var `public`: Bool?
-    public var owner: User?
     public var truncated: Bool?
     public var comments: Int?
     public var comments_url: String?
@@ -29,6 +28,8 @@ public class Gist: GitHubObject {
     public var history: [History]?
     public var created_at: NSDate?
     public var updated_at: NSDate?
+    public var user: User?
+    public var organization: Organization?
     
     required public init?(_ map: Map) {
         super.init(map)
@@ -42,7 +43,6 @@ public class Gist: GitHubObject {
         id              <- map["id"]
         description     <- map["description"]
         `public`        <- map["public"]
-        owner           <- map["owner"]
         truncated       <- map["truncated"]
         comments        <- map["comments"]
         comments_url    <- map["comments_url"]
@@ -53,33 +53,44 @@ public class Gist: GitHubObject {
         history         <- map["history"]
         created_at      <- (map["created_at"], ISO8601DateTransform())
         updated_at      <- (map["updated_at"], ISO8601DateTransform())
+
+        if let owner = map.JSONDictionary["owner"] as? [String: AnyObject] {
+            if let type = owner["type"] as? String {
+                if type == "user" {
+                    user <- map["owner"]
+                } else if type == "Organization" {
+                    organization <- map["owner"]
+                }
+            }
+        }
+
     }
 }
 
 extension RootEndpoint {
     
-    func gistRequest(gist_id: String? = nil) -> Request {
+    func gistRequest(gist_id: String? = nil) -> AuthorizationRequest {
         let uri = URITemplate(template: gists_url!)
-        return Alamofire.request(.GET, uri.expandOptional(["gist_id": gist_id]))
+        return AuthorizationRequest(url: uri.expandOptional(["gist_id": gist_id]))
     }
     
-    func publicGistRequest() -> Request {
-        return Alamofire.request(.GET, public_gists_url!)
+    func publicGistRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: public_gists_url!)
     }
     
-    func starredGistsRequest() -> Request {
-        return Alamofire.request(.GET, starred_gists_url!)
+    func starredGistsRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: starred_gists_url!)
     }
 }
 
-public func gistRequest(gist_id: String? = nil) -> Request {
+public func gistRequest(gist_id: String? = nil) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.gistRequest(gist_id)
 }
 
-public func publicGistRequest() -> Request {
+public func publicGistRequest() -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.publicGistRequest()
 }
 
-public func starredGistsRequest() -> Request {
+public func starredGistsRequest() -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.starredGistsRequest()
 }

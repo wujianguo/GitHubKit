@@ -10,11 +10,10 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-
 class Manager {
 
     static let sharedInstance = Manager()
-    let rootEndpoint: RootEndpoint
+    var rootEndpoint: RootEndpoint
 
     init() {
         let file = NSBundle(forClass: Manager.self).pathForResource("RootEndpoint", ofType: "json")!
@@ -24,6 +23,14 @@ class Manager {
             rootEndpoint = Mapper<RootEndpoint>(context: nil).map(json)!
         } catch {
             rootEndpoint = Mapper<RootEndpoint>(context: nil).map([])!
+        }
+        let req = AuthorizationRequest(url: "https://api.github.com/", eTag: "\"d251d84fc3f78921c16c7f9c99d74eae\"")
+        req.responseObject { (response: Response<RootEndpoint, NSError>) in
+            if let code = response.response?.statusCode, ret = response.result.value {
+                if code == 200 {
+                    self.rootEndpoint = ret
+                }
+            }
         }
     }
 }
@@ -151,14 +158,21 @@ public class RootEndpoint: GitHubObject {
         user_organizations_url                  <- map["user_organizations_url"]
         user_repositories_url                   <- map["user_repositories_url"]
         user_search_url                         <- map["user_search_url"]
-        
     }
 }
 
-
-public func request(url: String) -> Request {
+/*
+public func request(url: String, eTag: String? = nil, lastModified: NSDate? = nil) -> Request {
+    if let e = eTag {
+        return Alamofire.request(.GET, url, headers: ["If-None-Match": e])
+    } else if let d = lastModified {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, dd LLL yyyy hh:mm:ss zzz"
+        return Alamofire.request(.GET, url, headers: ["If-Modified-Since": dateFormatter.stringFromDate(d)])
+    }
     return Alamofire.request(.GET, url)
 }
+*/
 
 public var rootEndpoint: RootEndpoint {
     return Manager.sharedInstance.rootEndpoint

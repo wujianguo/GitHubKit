@@ -41,7 +41,7 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(PaginationTableViewCell<T>.self, forCellReuseIdentifier: tableViewCellIdentifier)
+        tableView.registerClass(tableViewCellClassType, forCellReuseIdentifier: tableViewCellIdentifier)
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
         paginationNext()
@@ -53,7 +53,7 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var firstRequest: Request! {
+    var firstRequest: AuthorizationRequest! {
         return nil
     }
 
@@ -65,40 +65,41 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     var firstPageEtag: String?
     var firstPageLastModified: NSDate?
     
-    var currentRequest: Request?
+    var currentRequest: AuthorizationRequest?
     
     func paginationNext() {
         guard firstRequest != nil else { return }
+        guard !refreshControl!.refreshing else { return }
         
         var url: String?
         if let next = nextPage {
-            url = GitHubKit.request(next).request?.URL?.absoluteString
+            url = next
         } else {
-            url = firstRequest.request?.URL?.absoluteString
+            url = firstRequest.url
         }
 
-        if let current = currentRequest?.request?.URL?.absoluteString {
+        if let current = currentRequest?.url {
             if current == lastPage || current == url {
                 return
             }
         }
         currentRequest?.cancel()
-        currentRequest = GitHubKit.request(url!)
+        currentRequest = AuthorizationRequest(url: url!)
 
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
-            if let events = response.result.value {
+            if let ret = response.result.value {
                 if self.items.count == 0 {
-                    self.firstPageEtag = events.eTag
-                    self.firstPageLastModified = events.lastModified
+                    self.firstPageEtag = ret.eTag
+                    self.firstPageLastModified = ret.lastModified
                 }
-                self.items.appendContentsOf(events.array)
-                if let link = events.firstPageLink {
+                self.items.appendContentsOf(ret.array)
+                if let link = ret.firstPageLink {
                     self.firstPage = link
                 }
-                if let link = events.lastPageLink {
+                if let link = ret.lastPageLink {
                     self.lastPage = link
                 }
-                if let link = events.nextPageLink {
+                if let link = ret.nextPageLink {
                     self.nextPage = link
                 }
                 self.tableView.reloadData()
@@ -107,14 +108,43 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     }
     
     func refresh() {
-        refreshControl?.endRefreshing()
-        if let lastModified = self.firstPageLastModified {
-            
+        guard refreshControl!.refreshing else { return }
+        currentRequest?.cancel()
+        currentRequest = AuthorizationRequest(url: firstRequest.url, eTag: firstPageEtag, lastModified: firstPageLastModified)
+        currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
+            self.refreshControl?.endRefreshing()
+            if let ret = response.result.value {
+                if let e = ret.eTag {
+                    if self.firstPageEtag == e {
+                        return
+                    }
+                }
+                if let d = ret.lastModified {
+                    if self.firstPageLastModified == d {
+                        return
+                    }
+                }
+                self.firstPageEtag = ret.eTag
+                self.firstPageLastModified = ret.lastModified
+                self.items = ret.array
+                if let link = ret.firstPageLink {
+                    self.firstPage = link
+                }
+                if let link = ret.lastPageLink {
+                    self.lastPage = link
+                }
+                self.nextPage = ret.nextPageLink
+                self.tableView.reloadData()
+            }
         }
     }
     
     var tableViewCellIdentifier: String {
         return ""
+    }
+
+    var tableViewCellClassType: AnyClass? {
+        return nil
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
