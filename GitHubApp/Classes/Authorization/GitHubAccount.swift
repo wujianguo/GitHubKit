@@ -39,7 +39,7 @@ class GitHubAccount {
 //    var scope: [String]?
     var token_type: String?
 
-    init() {
+    private init() {
         // todo: save to keychain, icloud
         access_token = NSUserDefaults.standardUserDefaults().stringForKey("access_token")
         token_type = NSUserDefaults.standardUserDefaults().stringForKey("token_type")

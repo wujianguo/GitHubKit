@@ -44,7 +44,8 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
         tableView.registerClass(tableViewCellClassType, forCellReuseIdentifier: tableViewCellIdentifier)
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
-        paginationNext()
+        refreshControl?.beginRefreshing()
+        refresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,23 +69,16 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     var currentRequest: AuthorizationRequest?
     
     func paginationNext() {
-        guard firstRequest != nil else { return }
         guard !refreshControl!.refreshing else { return }
-        
-        var url: String?
-        if let next = nextPage {
-            url = next
-        } else {
-            url = firstRequest.url
-        }
+        guard nextPage != nil else { return }
 
         if let current = currentRequest?.url {
-            if current == lastPage || current == url {
+            if current == lastPage || current == nextPage {
                 return
             }
         }
         currentRequest?.cancel()
-        currentRequest = AuthorizationRequest(url: url!)
+        currentRequest = AuthorizationRequest(url: nextPage!)
 
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
             if let ret = response.result.value {
@@ -114,16 +108,6 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
             self.refreshControl?.endRefreshing()
             if let ret = response.result.value {
-                if let e = ret.eTag {
-                    if self.firstPageEtag == e {
-                        return
-                    }
-                }
-                if let d = ret.lastModified {
-                    if self.firstPageLastModified == d {
-                        return
-                    }
-                }
                 self.firstPageEtag = ret.eTag
                 self.firstPageLastModified = ret.lastModified
                 self.items = ret.array

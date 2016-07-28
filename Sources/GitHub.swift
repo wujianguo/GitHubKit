@@ -15,7 +15,7 @@ class Manager {
     static let sharedInstance = Manager()
     var rootEndpoint: RootEndpoint
 
-    init() {
+    private init() {
         let file = NSBundle(forClass: Manager.self).pathForResource("RootEndpoint", ofType: "json")!
         let data = NSData(contentsOfFile: file)!
         do {
@@ -24,12 +24,11 @@ class Manager {
         } catch {
             rootEndpoint = Mapper<RootEndpoint>(context: nil).map([])!
         }
-        let req = AuthorizationRequest(url: "https://api.github.com/", eTag: "\"d251d84fc3f78921c16c7f9c99d74eae\"")
+        let url = "https://api.github.com/"
+        let req = AuthorizationRequest(url: url, eTag: "\"d251d84fc3f78921c16c7f9c99d74eae\"")
         req.responseObject { (response: Response<RootEndpoint, NSError>) in
-            if let code = response.response?.statusCode, ret = response.result.value {
-                if code == 200 {
-                    self.rootEndpoint = ret
-                }
+            if response.result.isSuccess, let ret = response.result.value {
+                self.rootEndpoint = ret
             }
         }
     }
@@ -122,6 +121,9 @@ public class RootEndpoint: GitHubObject {
     public var user_repositories_url: String?
     public var user_search_url: String?
 
+    public var public_repos_url: String? = "https://api.github.com/repositories"
+    public var all_users_url: String? = "https://api.github.com/users"
+
     required public init?(_ map: Map) {
         super.init(map)
     }
@@ -161,18 +163,6 @@ public class RootEndpoint: GitHubObject {
     }
 }
 
-/*
-public func request(url: String, eTag: String? = nil, lastModified: NSDate? = nil) -> Request {
-    if let e = eTag {
-        return Alamofire.request(.GET, url, headers: ["If-None-Match": e])
-    } else if let d = lastModified {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEEE, dd LLL yyyy hh:mm:ss zzz"
-        return Alamofire.request(.GET, url, headers: ["If-Modified-Since": dateFormatter.stringFromDate(d)])
-    }
-    return Alamofire.request(.GET, url)
-}
-*/
 
 public var rootEndpoint: RootEndpoint {
     return Manager.sharedInstance.rootEndpoint

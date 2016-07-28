@@ -162,3 +162,57 @@ public class Repository: GitHubObject {
     }
 
 }
+
+
+public enum RepositoryType: String {
+    case All = "all"
+    case Owner = "owner"
+    case Public = "public"
+    case Private = "private"
+    case Member = "member"
+}
+
+public enum RepositorySort: String {
+    case Created = "created"
+    case Updated = "updated"
+    case Pushed = "pushed"
+    case FullName = "full_name"
+}
+
+extension RootEndpoint {
+
+    func currentUserReposRequest(type: RepositoryType? = nil, sort: RepositorySort? = nil) -> AuthorizationRequest {
+        let uri = URITemplate(template: current_user_repositories_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["type": type != nil ? "\(type!)" : nil, "sort": sort != nil ? "\(sort!)" : nil]), loginRequired: true)
+    }
+
+    func publicReposRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: public_repos_url!)
+    }
+
+    func userReposRequest(user: String, type: RepositoryType? = nil, sort: RepositorySort? = nil) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_repositories_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user, "type": type != nil ? "\(type!)" : nil, "sort": sort != nil ? "\(sort!)" : nil]))
+    }
+
+    func orgReposRequest(type: RepositoryType? = nil) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_repositories_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["type": type != nil ? "\(type!)" : nil]))
+    }
+}
+
+public func currentUserReposRequest(type: RepositoryType? = nil, sort: RepositorySort? = nil) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.currentUserReposRequest(type, sort: sort)
+}
+
+public func publicReposRequest() -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.publicReposRequest()
+}
+
+public func userReposRequest(user: String, type: RepositoryType? = nil, sort: RepositorySort? = nil) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userReposRequest(user, type: type, sort: sort)
+}
+
+public func orgReposRequest(type: RepositoryType? = nil) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.orgReposRequest(type)
+}

@@ -37,6 +37,20 @@ extension Request {
                 return .Failure(error!)
             }
 
+            if let status = response?.statusCode {
+                if status < 200 || status >= 300 {
+                    let failureReason = NSHTTPURLResponse.localizedStringForStatusCode(status)
+                    var userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
+                    if let d = data {
+                        if let body = String(data: d, encoding: NSUTF8StringEncoding) {
+                            userInfo[NSLocalizedDescriptionKey] = body
+                        }
+                    }
+                    let error = NSError(domain: AuthorizationRequest.Domain, code: status, userInfo: userInfo)
+                    return .Failure(error)
+                }
+            }
+
             guard let _ = data else {
                 let failureReason = "Data could not be serialized. Input data was nil."
                 let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
@@ -102,6 +116,20 @@ extension Request {
         return ResponseSerializer { request, response, data, error in
             guard error == nil else {
                 return .Failure(error!)
+            }
+
+            if let status = response?.statusCode {
+                if status < 200 || status >= 300 {
+                    let failureReason = NSHTTPURLResponse.localizedStringForStatusCode(status)
+                    var userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
+                    if let d = data {
+                        if let body = String(data: d, encoding: NSUTF8StringEncoding) {
+                            userInfo[NSLocalizedDescriptionKey] = body
+                        }
+                    }
+                    let error = NSError(domain: AuthorizationRequest.Domain, code: status, userInfo: userInfo)
+                    return .Failure(error)
+                }
             }
             
             guard let _ = data else {

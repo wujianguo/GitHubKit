@@ -54,3 +54,44 @@ public class User: GitHubObject {
         site_admin          <- map["site_admin"]
     }
 }
+
+public extension User {
+
+    public func followersRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: followers_url!)
+    }
+
+    public func followingRequest(other_user: String? = nil) -> AuthorizationRequest {
+        let uri = URITemplate(template: following_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["other_user": other_user]))
+    }
+}
+
+extension RootEndpoint {
+
+    func currentUserRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: current_user_url!, loginRequired: true)
+    }
+
+    func userRequest(user: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user]))
+    }
+
+    func allUsersRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: all_users_url!)
+    }
+}
+
+public func currentUserRequest() -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.currentUserRequest()
+}
+
+public func userRequest(user: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userRequest(user)
+}
+
+public func allUsersRequest() -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.allUsersRequest()
+}
+

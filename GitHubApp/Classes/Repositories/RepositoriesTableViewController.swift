@@ -12,7 +12,25 @@ import Alamofire
 import ObjectMapper
 
 
-class RepositoriesTableViewController: PaginationTableViewController<Gist> {
+class RepositoryTableViewCell: PaginationTableViewCell<Repository> {
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
+    }
+
+    override func updateUI() {
+        if let name = item.name {
+            textLabel?.text = name
+        }
+        if let desc = item.description {
+            detailTextLabel?.text = desc
+        }
+    }
+    
+}
+
+
+class RepositoriesTableViewController: PaginationTableViewController<Repository> {
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -27,7 +45,7 @@ class RepositoriesTableViewController: PaginationTableViewController<Gist> {
     // MARK: - Table view data source
 
     override var firstRequest: AuthorizationRequest {
-        return GitHubKit.publicGistRequest()
+        return GitHubKit.currentUserReposRequest()
     }
     
     override var tableViewCellIdentifier: String {
@@ -35,13 +53,7 @@ class RepositoriesTableViewController: PaginationTableViewController<Gist> {
     }
 
     override var tableViewCellClassType: AnyClass? {
-        return PaginationTableViewCell<Gist>.self
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        cell.textLabel?.text = "\(items[indexPath.row].user?.login)"
-        return cell
+        return RepositoryTableViewCell.self
     }
 
     /*

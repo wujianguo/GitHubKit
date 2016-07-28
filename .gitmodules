@@ -7,3 +7,6 @@
 [submodule "SnapKit"]
 	path = SnapKit
 	url = https://github.com/SnapKit/SnapKit.git
+[submodule "Kingfisher"]
+	path = Kingfisher
+	url = https://github.com/onevcat/Kingfisher.git

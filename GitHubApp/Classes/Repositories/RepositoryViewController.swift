@@ -1,50 +1,23 @@
 //
-//  NewsTableViewController.swift
+//  RepositoryViewController.swift
 //  GitHubKit
 //
-//  Created by wujianguo on 16/7/21.
+//  Created by wujianguo on 16/7/27.
 //
 //
 
 import UIKit
-import GitHubKit
-import Alamofire
-import ObjectMapper
-import Kingfisher
 
-class NewsTableViewCell: PaginationTableViewCell<Event> {
+class RepositoryViewController: UITableViewController {
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
-    }
-
-    override func updateUI() {
-        if let name = item.actor?.login {
-            textLabel?.text = name
-        } else if let name = item.org?.login {
-            textLabel?.text = name
-        }
-        if let repoName = item.repo?.name {
-            detailTextLabel?.text = repoName
-        }
-        if let avatar = item.actor?.avatar_url {
-            imageView?.kf_cancelDownloadTask()
-            imageView?.kf_setImageWithURL(NSURL(string: avatar), placeholderImage: UIImage(named: "default-avatar"))
-        }
-    }
-}
-
-
-class NewsTableViewController: PaginationTableViewController<Event> {
-    
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
-        tabBarItem = UITabBarItem(title: NSLocalizedString("News", comment: ""), image: UIImage(named: "news"), tag: 0)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("News", comment: "")
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,19 +26,26 @@ class NewsTableViewController: PaginationTableViewController<Event> {
     }
 
     // MARK: - Table view data source
-        
-    override var firstRequest: AuthorizationRequest {
-        return GitHubKit.eventRequest()
-    }
-    
-    override var tableViewCellIdentifier: String {
-        return "NewsTableViewCellIdentifier"
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
-    override var tableViewCellClassType: AnyClass? {
-        return NewsTableViewCell.self
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
-    
+
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
