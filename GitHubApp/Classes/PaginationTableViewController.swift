@@ -57,6 +57,10 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     var firstRequest: AuthorizationRequest! {
         return nil
     }
+    
+    var loginRequired: Bool {
+        return false
+    }
 
     var items = [T]()
     var firstPage: String?
@@ -78,7 +82,7 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
             }
         }
         currentRequest?.cancel()
-        currentRequest = AuthorizationRequest(url: nextPage!)
+        currentRequest = AuthorizationRequest(url: nextPage!, loginRequired: loginRequired)
 
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
             if let ret = response.result.value {
@@ -104,7 +108,7 @@ class PaginationTableViewController<T: Mappable>: UITableViewController {
     func refresh() {
         guard refreshControl!.refreshing else { return }
         currentRequest?.cancel()
-        currentRequest = AuthorizationRequest(url: firstRequest.url, eTag: firstPageEtag, lastModified: firstPageLastModified)
+        currentRequest = AuthorizationRequest(url: firstRequest.url, eTag: firstPageEtag, lastModified: firstPageLastModified, loginRequired: loginRequired)
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
             self.refreshControl?.endRefreshing()
             if let ret = response.result.value {

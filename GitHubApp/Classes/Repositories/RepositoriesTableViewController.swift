@@ -44,6 +44,10 @@ class RepositoriesTableViewController: PaginationTableViewController<Repository>
     
     // MARK: - Table view data source
 
+    override var loginRequired: Bool {
+        return true
+    }
+    
     override var firstRequest: AuthorizationRequest {
         return GitHubKit.currentUserReposRequest()
     }

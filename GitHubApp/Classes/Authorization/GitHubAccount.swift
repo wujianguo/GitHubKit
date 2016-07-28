@@ -34,10 +34,14 @@ extension String {
 class GitHubAccount {
 
     static let sharedInstance = GitHubAccount()
+    
+    class func config(clientID: String, scope: String) {
+        sharedInstance.clientID = clientID
+        sharedInstance.scope = scope
+    }
 
-    var access_token: String?
-//    var scope: [String]?
-    var token_type: String?
+    private var access_token: String?
+    private var token_type: String?
 
     private init() {
         // todo: save to keychain, icloud
@@ -50,12 +54,10 @@ class GitHubAccount {
             self.timestamp = NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970
             self.state = self.sign(self.clientID, t: self.timestamp)
 
-            let scope = "user:email user:follow public_repo repo notifications read:org"
-
             let components = NSURLComponents(string: "https://github.com/login/oauth/authorize")!
             let query = [
                 NSURLQueryItem(name: "client_id", value: self.clientID),
-                NSURLQueryItem(name: "scope", value: scope),
+                NSURLQueryItem(name: "scope", value: self.scope),
                 NSURLQueryItem(name: "state", value: self.state!),
                 ]
             components.queryItems = query
@@ -65,18 +67,19 @@ class GitHubAccount {
             topVC.presentViewController(self.authVC!, animated: true, completion: nil)
         }
     }
+    
 
     private var timestamp: NSTimeInterval = 0
     private var state: String?
     private var authVC: SFSafariViewController?
 
 
-    func sign(key: String, t: NSTimeInterval) -> String {
+    private func sign(key: String, t: NSTimeInterval) -> String {
         let origin = "\(key)\(timestamp)"
         return "\(origin.md5),\(timestamp)"
     }
 
-    func getQueryStringParameter(url: String, param: String) -> String? {
+    private func getQueryStringParameter(url: String, param: String) -> String? {
         if let url = NSURLComponents(string: url) {
             if let query = url.queryItems {
                 return (query.filter { $0.name == param }).first?.value
@@ -85,7 +88,9 @@ class GitHubAccount {
         return nil
     }
 
-    private let clientID = "1234567890"
+    private var clientID: String! = nil
+    private var scope: String! = nil
+
     private var authCompletion: AuthorizationCompletion?
 
 
