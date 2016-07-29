@@ -120,11 +120,93 @@ public class Event: GitHubObject {
 
 extension RootEndpoint {
 
-    func eventRequest() -> AuthorizationRequest {
+    func publicEventsRequest() -> AuthorizationRequest {
         return AuthorizationRequest(url: events_url!)
+    }
+
+    func repositoryEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: repository_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["owner": owner, "repo": repo]))
+    }
+
+    func repositoryIssueEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: repository_issue_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["owner": owner, "repo": repo]))
+    }
+
+    func repositoryPublicEventsForNetworkRequest(owner: String, repo: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: repository_events_for_network_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["owner": owner, "repo": repo]))
+    }
+
+    func organizationPublicEventsRequest(org: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: organization_public_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["org": org]))
+    }
+
+    func userReceivedEventsRequest(user: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_received_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user]))
+    }
+
+    func userReceivedPublicEventsRequest(user: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_received_public_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user]))
+    }
+
+    func userPerformedEventsRequest(user: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_performed_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user]))
+    }
+
+    func userPerformedPublicEventsRequest(user: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_performed_public_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user]))
+    }
+
+    func userPerformedPublicEventsRequest(user: String, org: String) -> AuthorizationRequest {
+        let uri = URITemplate(template: user_organization_events_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["user": user, "org": org]), loginRequired: true)
     }
 }
 
-public func eventRequest() -> AuthorizationRequest {
-    return Manager.sharedInstance.rootEndpoint.eventRequest()
+public func publicEventsRequest() -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.publicEventsRequest()
+}
+
+public func repositoryEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.repositoryEventsRequest(owner, repo: repo)
+}
+
+// todo: Repository issue events have a different format than other events
+public func repositoryIssueEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.repositoryIssueEventsRequest(owner, repo: repo)
+}
+
+public func repositoryPublicEventsForNetworkRequest(owner: String, repo: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.repositoryPublicEventsForNetworkRequest(owner, repo: repo)
+}
+
+public func organizationPublicEventsRequest(org: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.organizationPublicEventsRequest(org)
+}
+
+public func userReceivedEventsRequest(user: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userReceivedEventsRequest(user)
+}
+
+public func userReceivedPublicEventsRequest(user: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userReceivedPublicEventsRequest(user)
+}
+
+public func userPerformedEventsRequest(user: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userPerformedEventsRequest(user)
+}
+
+public func userPerformedPublicEventsRequest(user: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userPerformedPublicEventsRequest(user)
+}
+
+public func userPerformedPublicEventsRequest(user: String, org: String) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.userPerformedPublicEventsRequest(user, org: org)
 }

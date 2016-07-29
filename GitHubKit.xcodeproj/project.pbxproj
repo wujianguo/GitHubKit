@@ -41,6 +41,18 @@
 		81BAD3291D48B93F000B2B65 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BAD30C1D48B92D000B2B65 /* Kingfisher.framework */; };
 		81BAD32A1D48B93F000B2B65 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81BAD30C1D48B92D000B2B65 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		81BAD32E1D48BDCA000B2B65 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD32D1D48BDCA000B2B65 /* RepositoryViewController.swift */; };
+		81BAD3391D4B4091000B2B65 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3381D4B4091000B2B65 /* Notification.swift */; };
+		81BAD33A1D4B4091000B2B65 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3381D4B4091000B2B65 /* Notification.swift */; };
+		81BAD33B1D4B4091000B2B65 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3381D4B4091000B2B65 /* Notification.swift */; };
+		81BAD33C1D4B4091000B2B65 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3381D4B4091000B2B65 /* Notification.swift */; };
+		81BAD33E1D4B411B000B2B65 /* Starring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD33D1D4B411B000B2B65 /* Starring.swift */; };
+		81BAD33F1D4B411B000B2B65 /* Starring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD33D1D4B411B000B2B65 /* Starring.swift */; };
+		81BAD3401D4B411B000B2B65 /* Starring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD33D1D4B411B000B2B65 /* Starring.swift */; };
+		81BAD3411D4B411B000B2B65 /* Starring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD33D1D4B411B000B2B65 /* Starring.swift */; };
+		81BAD3431D4B554F000B2B65 /* Watching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3421D4B554F000B2B65 /* Watching.swift */; };
+		81BAD3441D4B554F000B2B65 /* Watching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3421D4B554F000B2B65 /* Watching.swift */; };
+		81BAD3451D4B554F000B2B65 /* Watching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3421D4B554F000B2B65 /* Watching.swift */; };
+		81BAD3461D4B554F000B2B65 /* Watching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD3421D4B554F000B2B65 /* Watching.swift */; };
 		81CA4DE31D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
 		81CA4DE41D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
 		81CA4DE51D22B8DF0045F873 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA4DE21D22B8DF0045F873 /* Gist.swift */; };
@@ -326,6 +338,10 @@
 		815E2E6C1D4752CD0042B0CE /* AuthorizationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationRequest.swift; sourceTree = "<group>"; };
 		81BAD2FC1D48B92D000B2B65 /* Kingfisher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Kingfisher.xcodeproj; path = Kingfisher/Kingfisher.xcodeproj; sourceTree = SOURCE_ROOT; };
 		81BAD32D1D48BDCA000B2B65 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
+		81BAD3381D4B4091000B2B65 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		81BAD33D1D4B411B000B2B65 /* Starring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starring.swift; sourceTree = "<group>"; };
+		81BAD3421D4B554F000B2B65 /* Watching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Watching.swift; sourceTree = "<group>"; };
+		81BAD3471D4B5748000B2B65 /* buddybuild_postclone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buddybuild_postclone.sh; sourceTree = "<group>"; };
 		81CA4DE21D22B8DF0045F873 /* Gist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		81CA4DE71D22B9430045F873 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		81CA4DEC1D22BE930045F873 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -597,11 +613,14 @@
 				81DB1B5A1D2223F1007F114B /* AlamofireObjectMapper.swift */,
 				815A31D61D4225EF00E170AF /* Repository.swift */,
 				815A31CC1D42202D00E170AF /* Event.swift */,
+				81BAD3381D4B4091000B2B65 /* Notification.swift */,
 				81CA4DE21D22B8DF0045F873 /* Gist.swift */,
 				81CA4DE71D22B9430045F873 /* User.swift */,
 				815A31D11D42249000E170AF /* Organization.swift */,
 				81CA4DEC1D22BE930045F873 /* File.swift */,
 				81CA4DF11D22C0620045F873 /* Fork.swift */,
+				81BAD33D1D4B411B000B2B65 /* Starring.swift */,
+				81BAD3421D4B554F000B2B65 /* Watching.swift */,
 				81CA4DF61D22C0DC0045F873 /* History.swift */,
 				81DB1AFD1D221AF6007F114B /* GitHub.swift */,
 				81DB1AF81D221AA5007F114B /* GitHubKit.h */,
@@ -616,6 +635,7 @@
 		81DB1B021D221C93007F114B /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				81BAD3471D4B5748000B2B65 /* buddybuild_postclone.sh */,
 				81DB1B471D2221B6007F114B /* LICENSE */,
 				81DB1B481D2221B6007F114B /* README.md */,
 			);
@@ -1129,6 +1149,7 @@
 			files = (
 				81DB1BE41D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CD1D42202D00E170AF /* Event.swift in Sources */,
+				81BAD33E1D4B411B000B2B65 /* Starring.swift in Sources */,
 				815E2E6D1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DED1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DE81D22B9430045F873 /* User.swift in Sources */,
@@ -1137,8 +1158,10 @@
 				815A31D71D4225EF00E170AF /* Repository.swift in Sources */,
 				81DB1B5B1D2223F1007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1AFE1D221AF7007F114B /* GitHub.swift in Sources */,
+				81BAD3391D4B4091000B2B65 /* Notification.swift in Sources */,
 				81CA4DE31D22B8DF0045F873 /* Gist.swift in Sources */,
 				815A31D21D42249000E170AF /* Organization.swift in Sources */,
+				81BAD3431D4B554F000B2B65 /* Watching.swift in Sources */,
 				81CA4DF21D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1149,6 +1172,7 @@
 			files = (
 				81DB1BE51D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CE1D42202D00E170AF /* Event.swift in Sources */,
+				81BAD33F1D4B411B000B2B65 /* Starring.swift in Sources */,
 				815E2E6E1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DEE1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DE91D22B9430045F873 /* User.swift in Sources */,
@@ -1157,8 +1181,10 @@
 				815A31D81D4225EF00E170AF /* Repository.swift in Sources */,
 				81DB1BBB1D228172007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1AFF1D221AF7007F114B /* GitHub.swift in Sources */,
+				81BAD33A1D4B4091000B2B65 /* Notification.swift in Sources */,
 				81CA4DE41D22B8DF0045F873 /* Gist.swift in Sources */,
 				815A31D31D42249000E170AF /* Organization.swift in Sources */,
+				81BAD3441D4B554F000B2B65 /* Watching.swift in Sources */,
 				81CA4DF31D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1169,6 +1195,7 @@
 			files = (
 				81DB1BE61D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31CF1D42202D00E170AF /* Event.swift in Sources */,
+				81BAD3401D4B411B000B2B65 /* Starring.swift in Sources */,
 				815E2E6F1D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DEF1D22BE930045F873 /* File.swift in Sources */,
 				81CA4DEA1D22B9430045F873 /* User.swift in Sources */,
@@ -1177,8 +1204,10 @@
 				815A31D91D4225EF00E170AF /* Repository.swift in Sources */,
 				81DB1BBC1D228172007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1B001D221AF7007F114B /* GitHub.swift in Sources */,
+				81BAD33B1D4B4091000B2B65 /* Notification.swift in Sources */,
 				81CA4DE51D22B8DF0045F873 /* Gist.swift in Sources */,
 				815A31D41D42249000E170AF /* Organization.swift in Sources */,
+				81BAD3451D4B554F000B2B65 /* Watching.swift in Sources */,
 				81CA4DF41D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1189,6 +1218,7 @@
 			files = (
 				81DB1BE71D23ADD0007F114B /* URITemplate.swift in Sources */,
 				815A31D01D42202D00E170AF /* Event.swift in Sources */,
+				81BAD3411D4B411B000B2B65 /* Starring.swift in Sources */,
 				815E2E701D4752CD0042B0CE /* AuthorizationRequest.swift in Sources */,
 				81CA4DF01D22BE930045F873 /* File.swift in Sources */,
 				81CA4DEB1D22B9430045F873 /* User.swift in Sources */,
@@ -1197,8 +1227,10 @@
 				815A31DA1D4225EF00E170AF /* Repository.swift in Sources */,
 				81DB1BBD1D228173007F114B /* AlamofireObjectMapper.swift in Sources */,
 				81DB1B011D221AF7007F114B /* GitHub.swift in Sources */,
+				81BAD33C1D4B4091000B2B65 /* Notification.swift in Sources */,
 				81CA4DE61D22B8DF0045F873 /* Gist.swift in Sources */,
 				815A31D51D42249000E170AF /* Organization.swift in Sources */,
+				81BAD3461D4B554F000B2B65 /* Watching.swift in Sources */,
 				81CA4DF51D22C0620045F873 /* Fork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

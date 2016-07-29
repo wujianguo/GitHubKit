@@ -24,6 +24,7 @@ class Manager {
         } catch {
             rootEndpoint = Mapper<RootEndpoint>(context: nil).map([])!
         }
+        /*
         let url = "https://api.github.com/"
         let req = AuthorizationRequest(url: url, eTag: "\"d251d84fc3f78921c16c7f9c99d74eae\"")
         req.responseObject { (response: Response<RootEndpoint, NSError>) in
@@ -31,6 +32,7 @@ class Manager {
                 self.rootEndpoint = ret
             }
         }
+        */
     }
 }
 
@@ -123,6 +125,37 @@ public class RootEndpoint: GitHubObject {
 
     public var public_repos_url: String? = "https://api.github.com/repositories"
     public var all_users_url: String? = "https://api.github.com/users"
+    public var repository_events_url: String? {
+        return "\(repository_url!)/events"
+    }
+    public var repository_issue_events_url: String? {
+        return "\(repository_url!)/issues/events"
+    }
+    public var repository_events_for_network_url: String? = "https://api.github.com/networks/{owner}/{repo}/events"
+    public var organization_public_events_url: String? {
+        return "\(organization_url!)/events"
+    }
+    public var user_received_events_url: String? {
+        return "\(user_url!)/received_events"
+    }
+    public var user_received_public_events_url: String? {
+        return "\(user_url!)/received_events/public"
+    }
+    public var user_performed_events_url: String? {
+        return "\(user_url!)/events"
+    }
+    public var user_performed_public_events_url: String? {
+        return "\(user_url!)/events/public"
+    }
+    public var user_organization_events_url: String? {
+        return "\(user_url!)/events/orgs/{org}"
+    }
+    public var stargazers_url: String? {
+        return "\(repository_url!)/stargazers"
+    }
+    public var uesr_starred_repos_url: String? {
+        return "\(user_url!)/starred"
+    }
 
     required public init?(_ map: Map) {
         super.init(map)

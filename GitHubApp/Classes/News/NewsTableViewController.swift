@@ -55,7 +55,7 @@ class NewsTableViewController: PaginationTableViewController<Event> {
     // MARK: - Table view data source
         
     override var firstRequest: AuthorizationRequest {
-        return GitHubKit.eventRequest()
+        return GitHubKit.publicEventsRequest()
     }
     
     override var tableViewCellIdentifier: String {

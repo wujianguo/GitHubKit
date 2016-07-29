@@ -216,3 +216,4 @@ public func userReposRequest(user: String, type: RepositoryType? = nil, sort: Re
 public func orgReposRequest(type: RepositoryType? = nil) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.orgReposRequest(type)
 }
+

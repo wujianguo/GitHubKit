@@ -66,12 +66,16 @@ public class AuthorizationRequest {
     let eTag: String?
     let lastModified: NSDate?
     let loginRequired: Bool
+    var additionalHeaders: [String: String] = [:]
+    var method: Alamofire.Method = .GET
 
-    public init(url: String, eTag: String? = nil, lastModified: NSDate? = nil, loginRequired: Bool = false) {
+    public init(url: String, eTag: String? = nil, lastModified: NSDate? = nil, loginRequired: Bool = false, method: Alamofire.Method = .GET, additionalHeaders: [String: String] = [:]) {
         self.url = url
         self.eTag = eTag
         self.lastModified = lastModified
         self.loginRequired = loginRequired
+        self.additionalHeaders = additionalHeaders
+        self.method = method
     }
 
     var cancelled: Bool = false
@@ -213,10 +217,13 @@ public class AuthorizationRequest {
             dateFormatter.dateFormat = "EEEE, dd LLL yyyy hh:mm:ss zzz"
             headers["If-Modified-Since"] = dateFormatter.stringFromDate(d)
         }
+        for header in additionalHeaders {
+            headers[header.0] = header.1
+        }
         if headers.count > 0 {
-            return Alamofire.request(.GET, url, headers: headers)
+            return Alamofire.request(method, url, headers: headers)
         } else {
-            return Alamofire.request(.GET, url)
+            return Alamofire.request(method, url)
         }
     }
 }

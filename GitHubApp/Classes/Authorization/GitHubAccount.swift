@@ -62,9 +62,11 @@ class GitHubAccount {
                 ]
             components.queryItems = query
             let url = components.URL!
-            self.authVC = SFSafariViewController(URL: url)
-            let topVC = UIApplication.sharedApplication().topViewController
-            topVC.presentViewController(self.authVC!, animated: true, completion: nil)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.authVC = SFSafariViewController(URL: url)
+                let topVC = UIApplication.sharedApplication().topViewController
+                topVC.presentViewController(self.authVC!, animated: true, completion: nil)
+            }
         }
     }
     
