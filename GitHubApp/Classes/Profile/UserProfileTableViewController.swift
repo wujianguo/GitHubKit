@@ -1,50 +1,50 @@
 //
-//  NewsTableViewController.swift
+//  UserProfileTableViewController.swift
 //  GitHubKit
 //
-//  Created by wujianguo on 16/7/21.
+//  Created by wujianguo on 16/8/24.
 //
 //
 
 import UIKit
 import GitHubKit
-import Alamofire
-import ObjectMapper
-import Kingfisher
-
-class NewsTableViewCell: PaginationTableViewCell<Event> {
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
-    }
-
-    override func updateUI() {
-        if let name = item.actor?.login {
-            textLabel?.text = name
-        } else if let name = item.org?.login {
-            textLabel?.text = name
-        }
-        if let repoName = item.repo?.name {
-            detailTextLabel?.text = repoName
-        }
-        if let avatar = item.actor?.avatar_url {
-            imageView?.kf_cancelDownloadTask()
-            imageView?.kf_setImageWithURL(NSURL(string: avatar), placeholderImage: UIImage(named: "default-avatar"))
-        }
-    }
-}
 
 
-class NewsTableViewController: PaginationTableViewController<Event> {
-    
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
-        tabBarItem = UITabBarItem(title: NSLocalizedString("News", comment: ""), image: UIImage(named: "news"), tag: 0)
+class UserProfileTableViewController: ProfileTableViewController {
+
+    var user: User?
+    init(user: User?) {
+        super.init(style: .Grouped)
+        self.user = user
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("News", comment: "")
+        if user == nil {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserProfileTableViewController.handleCurrentUserInfoNotification(_:)), name: GitHubCurrentUserInfoNotificationName, object: nil)
+            if GitHubKit.currentUser == nil {
+                GitHubKit.login()
+            }
+        } else {
+            updateUI()
+        }
+    }
+
+    func handleCurrentUserInfoNotification(notification: NSNotification) {
+        user = GitHubKit.currentUser
+        updateUI()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: GitHubCurrentUserInfoNotificationName, object: nil)
+    }
+
+    func updateUI() {
+        title = "\(user!.name!)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,22 +53,26 @@ class NewsTableViewController: PaginationTableViewController<Event> {
     }
 
     // MARK: - Table view data source
-        
-    override var firstRequest: AuthorizationRequest {
-        if let user = GitHubKit.currentUser {
-            return GitHubKit.userReceivedEventsRequest(user.login!)
-        }
-        return GitHubKit.publicEventsRequest()
-    }
-    
-    override var tableViewCellIdentifier: String {
-        return "NewsTableViewCellIdentifier"
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
-    override var tableViewCellClassType: AnyClass? {
-        return NewsTableViewCell.self
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
-    
+
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -12,17 +12,26 @@ import ObjectMapper
 
 public typealias AuthorizationCompletion = (access_token: String?, token_type: String?) -> Void
 
-let GitHubAuthorizationNotificationName = "GitHubAuthorizationNotificationName"
+public let GitHubAuthorizationNotificationName = "GitHubAuthorizationNotificationName"
+public let GitHubCurrentUserInfoNotificationName = "GitHubCurrentUserInfoNotificationName"
+
+public func login() {
+    if GitHubAuthorization.sharedInstance.access_token == nil {
+        GitHubAuthorization.sharedInstance.authorize()
+    }
+}
+
+public var currentUser: User?
 
 public class GitHubAuthorization {
 
     static let sharedInstance = GitHubAuthorization()
     public class func config(access_token: String?, token_type: String? = "bearer", performAuthorizationRequire: ((completion: AuthorizationCompletion) -> Void)) {
-        if let token = access_token {
-            sharedInstance.access_token = token
-        }
         if let type = token_type {
             sharedInstance.token_type = type
+        }
+        if let token = access_token {
+            sharedInstance.access_token = token
         }
         sharedInstance.performAuthorizationRequire = performAuthorizationRequire
     }
@@ -32,7 +41,11 @@ public class GitHubAuthorization {
     }
 
     let queue = dispatch_queue_create("GitHubAuthorization", DISPATCH_QUEUE_SERIAL)
-    var access_token: String?
+    var access_token: String? {
+        didSet {
+            updateCurrentUser()
+        }
+    }
     var token_type = "bearer"
     var performAuthorizationRequire: ((completion: AuthorizationCompletion) -> Void)?
 
@@ -48,14 +61,25 @@ public class GitHubAuthorization {
             self.authorizing = true
             self.performAuthorizationRequire? { (token, type) in
                 dispatch_async(self.queue) {
-                    self.access_token = token
                     if let t = type {
                         self.token_type = t
                     }
+                    self.access_token = token
                     self.authorizing = false
                     NSNotificationCenter.defaultCenter().postNotificationName(GitHubAuthorizationNotificationName, object: nil, userInfo: nil)
                 }
             }
+        }
+    }
+
+    func updateCurrentUser() {
+        guard access_token != nil else {
+            currentUser = nil
+            return
+        }
+        currentUserRequest().responseObject { (response: Response<User, NSError>) in
+            currentUser = response.result.value
+            NSNotificationCenter.defaultCenter().postNotificationName(GitHubCurrentUserInfoNotificationName, object: nil, userInfo: nil)
         }
     }
 }

@@ -23,11 +23,11 @@ class MainViewController: UITabBarController {
     
     func setupViews() {
         let newsNav = UINavigationController(rootViewController: NewsTableViewController(style: .Plain))
-        let repoNav = UINavigationController(rootViewController: RepositoriesTableViewController(style: .Plain))
-        
+//        let repoNav = UINavigationController(rootViewController: RepositoriesTableViewController(style: .Plain))
+
         let exploreNav = UIStoryboard(name: "Explore", bundle: nil).instantiateInitialViewController()!
         let profileNav = UIStoryboard(name: "Profile", bundle: nil).instantiateInitialViewController()!
-        viewControllers = [newsNav, repoNav, exploreNav, profileNav]
+        viewControllers = [newsNav, exploreNav, profileNav]
     }
     
     /*

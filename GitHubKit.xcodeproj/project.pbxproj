@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81062B861D6DB3CE00326A2C /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */; };
+		81062B991D6DB3E200326A2C /* OrganizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */; };
 		8119C5A41D3FC28D004B5CC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8119C5A31D3FC28D004B5CC1 /* AppDelegate.swift */; };
 		8119C5AB1D3FC28D004B5CC1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8119C5A91D3FC28D004B5CC1 /* Main.storyboard */; };
 		8119C5AD1D3FC28D004B5CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8119C5AC1D3FC28D004B5CC1 /* Assets.xcassets */; };
@@ -317,6 +319,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
+		81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationTableViewController.swift; sourceTree = "<group>"; };
 		8119C5A11D3FC28D004B5CC1 /* GitHubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8119C5A31D3FC28D004B5CC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8119C5AA1D3FC28D004B5CC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -513,6 +517,8 @@
 			children = (
 				815A31C51D40DD4700E170AF /* Profile.storyboard */,
 				815A31C71D40DD6100E170AF /* ProfileTableViewController.swift */,
+				81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */,
+				81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1138,7 +1144,9 @@
 				81BAD32E1D48BDCA000B2B65 /* RepositoryViewController.swift in Sources */,
 				815A31C41D40DD3600E170AF /* ExploreTableViewController.swift in Sources */,
 				815A31BC1D40DCB000E170AF /* NewsTableViewController.swift in Sources */,
+				81062B991D6DB3E200326A2C /* OrganizationTableViewController.swift in Sources */,
 				815A31C21D40DD0E00E170AF /* RepositoriesTableViewController.swift in Sources */,
+				81062B861D6DB3CE00326A2C /* UserProfileTableViewController.swift in Sources */,
 				8119C5A41D3FC28D004B5CC1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

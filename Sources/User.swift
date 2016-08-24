@@ -28,6 +28,7 @@ public class User: GitHubObject {
     public var received_events_url: String?
     public var type: String?
     public var site_admin: Bool?
+    public var name: String?
     
     public required init?(_ map: Map) {
         super.init(map)
@@ -52,6 +53,7 @@ public class User: GitHubObject {
         received_events_url <- map["received_events_url"]
         type                <- map["type"]
         site_admin          <- map["site_admin"]
+        name                <- map["name"]
     }
 }
 

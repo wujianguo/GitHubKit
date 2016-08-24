@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SafariServices
 import GitHubKit
+import ObjectMapper
 
 extension String {
     var md5 : String{
@@ -43,10 +44,38 @@ class GitHubAccount {
     private var access_token: String?
     private var token_type: String?
 
+    private var currentUserJsonFile: NSURL? {
+        if let dir = NSFileManager.defaultManager().URLsForDirectory(.DocumentationDirectory, inDomains: .UserDomainMask).first {
+            if !NSFileManager.defaultManager().fileExistsAtPath(dir.absoluteString) {
+                do {
+                    try NSFileManager.defaultManager().createDirectoryAtURL(dir, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+
+                }
+            }
+            return dir.URLByAppendingPathComponent("current_user.json")
+        }
+        return nil
+    }
+
     private init() {
         // todo: save to keychain, icloud
         access_token = NSUserDefaults.standardUserDefaults().stringForKey("access_token")
         token_type = NSUserDefaults.standardUserDefaults().stringForKey("token_type")
+
+        if let file = currentUserJsonFile {
+            if let data = NSData(contentsOfURL: file) {
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments])
+                    GitHubKit.currentUser = Mapper<User>(context: nil).map(json)!
+                } catch {
+
+                }
+            }
+        }
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GitHubAccount.handleCurrentUserInfoNotification(_:)), name: GitHubCurrentUserInfoNotificationName, object: nil)
+
 
         GitHubAuthorization.config(access_token, token_type: token_type) { (completion) in
             self.authCompletion = completion
@@ -68,6 +97,20 @@ class GitHubAccount {
                 topVC.presentViewController(self.authVC!, animated: true, completion: nil)
             }
         }
+    }
+
+    @objc func handleCurrentUserInfoNotification(notification: NSNotification) {
+        if let file = currentUserJsonFile, user = GitHubKit.currentUser {
+            do {
+                try user.toJSONString()?.writeToURL(file, atomically: true, encoding: NSUTF8StringEncoding)
+            } catch {
+
+            }
+        }
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: GitHubCurrentUserInfoNotificationName, object: nil)
     }
     
 

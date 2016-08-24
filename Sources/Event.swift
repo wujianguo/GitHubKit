@@ -170,43 +170,53 @@ extension RootEndpoint {
     }
 }
 
+// https://developer.github.com/v3/activity/events/#list-public-events
 public func publicEventsRequest() -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.publicEventsRequest()
 }
 
+// https://developer.github.com/v3/activity/events/#list-repository-events
 public func repositoryEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.repositoryEventsRequest(owner, repo: repo)
 }
 
+// https://developer.github.com/v3/activity/events/#list-issue-events-for-a-repository
 // todo: Repository issue events have a different format than other events
 public func repositoryIssueEventsRequest(owner: String, repo: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.repositoryIssueEventsRequest(owner, repo: repo)
 }
 
+// https://developer.github.com/v3/activity/events/#list-public-events-for-a-network-of-repositories
 public func repositoryPublicEventsForNetworkRequest(owner: String, repo: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.repositoryPublicEventsForNetworkRequest(owner, repo: repo)
 }
 
+// https://developer.github.com/v3/activity/events/#list-public-events-for-an-organization
 public func organizationPublicEventsRequest(org: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.organizationPublicEventsRequest(org)
 }
 
+// https://developer.github.com/v3/activity/events/#list-events-that-a-user-has-received
 public func userReceivedEventsRequest(user: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.userReceivedEventsRequest(user)
 }
 
+// https://developer.github.com/v3/activity/events/#list-public-events-that-a-user-has-received
 public func userReceivedPublicEventsRequest(user: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.userReceivedPublicEventsRequest(user)
 }
 
+// https://developer.github.com/v3/activity/events/#list-events-performed-by-a-user
 public func userPerformedEventsRequest(user: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.userPerformedEventsRequest(user)
 }
 
+// https://developer.github.com/v3/activity/events/#list-public-events-performed-by-a-user
 public func userPerformedPublicEventsRequest(user: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.userPerformedPublicEventsRequest(user)
 }
 
+// https://developer.github.com/v3/activity/events/#list-events-for-an-organization
 public func userPerformedPublicEventsRequest(user: String, org: String) -> AuthorizationRequest {
     return Manager.sharedInstance.rootEndpoint.userPerformedPublicEventsRequest(user, org: org)
 }
