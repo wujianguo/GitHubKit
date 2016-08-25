@@ -17,6 +17,10 @@ class UserProfileTableViewController: ProfileTableViewController {
         super.init(style: .Grouped)
         self.user = user
     }
+
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -24,99 +28,104 @@ class UserProfileTableViewController: ProfileTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         if user == nil {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UserProfileTableViewController.handleCurrentUserInfoNotification(_:)), name: GitHubCurrentUserInfoNotificationName, object: nil)
             if GitHubKit.currentUser == nil {
                 GitHubKit.login()
+            } else {
+                user = GitHubKit.currentUser
+                setupUI()
             }
         } else {
-            updateUI()
+            setupUI()
+            if user?.login != GitHubKit.currentUser?.login {
+                checkfollowUserRequest(user!.login!).responseBoolen { (response) in
+                    self.isFollowing = response.result.value
+                }
+            }
+        }
+    }
+
+    var isFollowing: Bool? {
+        didSet {
+
         }
     }
 
     func handleCurrentUserInfoNotification(notification: NSNotification) {
         user = GitHubKit.currentUser
-        updateUI()
+        setupUI()
     }
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: GitHubCurrentUserInfoNotificationName, object: nil)
     }
 
-    func updateUI() {
-        title = "\(user!.name!)"
+    func setupUI() {
+        let segmentedControl = UISegmentedControl(items: [NSLocalizedString("Followers", comment: ""), NSLocalizedString("Starred", comment: ""), NSLocalizedString("Following", comment: "")])
+        segmentedControl.addTarget(self, action: #selector(UserProfileTableViewController.segmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
+        navigationItem.titleView = segmentedControl
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
+        tableView.dataSource = dataSource
+        dataSource.firstRequest = GitHubKit.userReposRequest(self.user!.login!)
+        tableView.registerClass(RepositoryTableViewCell.self, forCellReuseIdentifier: RepositoryTableViewCell.cellIdentifier)
+        dataSource.refresh(tableView)
+
+//        title = "\(user!.name!)"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    lazy var dataSource: RepositoryTableViewDataSource = {
+        let ds = RepositoryTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshControl: self.refreshControl!, firstRequest: GitHubKit.userReposRequest(self.user!.login!))
+        return ds
+    }()
+
+    func refresh() {
+        dataSource.refresh(tableView)
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    func segmentedControlValueChanged(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            performToFollowers()
+        } else if sender.selectedSegmentIndex == 1 {
+            performToStarred()
+        } else if sender.selectedSegmentIndex == 2 {
+            performToFollowing()
+        }
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    func performToFollowers() {
+        if let request = user?.followersRequest() {
+            let vc = PeopleTableViewController(firstRequest: request)
+            vc.title = NSLocalizedString("Followers", comment: "")
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func performToFollowing() {
+        if let request = user?.followingRequest() {
+            let vc = PeopleTableViewController(firstRequest: request)
+            vc.title = NSLocalizedString("Following", comment: "")
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func performToStarred() {
+        if let request = user?.starredRequest() {
+            let vc = RepositoriesTableViewController(firstRequest: request)
+            vc.title = NSLocalizedString("Starred", comment: "")
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func follow() {
+        
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = RepositoryViewController(repo: dataSource.items[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

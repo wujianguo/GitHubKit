@@ -8,8 +8,6 @@
 
 import UIKit
 import GitHubKit
-import Alamofire
-import ObjectMapper
 import Kingfisher
 
 class NewsTableViewCell: PaginationTableViewCell<Event> {
@@ -34,17 +32,22 @@ class NewsTableViewCell: PaginationTableViewCell<Event> {
     }
 }
 
+extension String {
+    static var newsTitle: String {
+        return NSLocalizedString("News", comment: "")
+    }
+}
 
 class NewsTableViewController: PaginationTableViewController<Event> {
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        tabBarItem = UITabBarItem(title: NSLocalizedString("News", comment: ""), image: UIImage(named: "news"), tag: 0)
+        tabBarItem = UITabBarItem(title: String.newsTitle, image: UIImage(named: "news"), tag: 0)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("News", comment: "")
+        title = String.newsTitle
     }
 
     override func didReceiveMemoryWarning() {

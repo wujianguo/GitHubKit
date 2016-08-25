@@ -1,64 +1,57 @@
 //
-//  RepositoriesTableViewController.swift
+//  RepositoryViewController.swift
 //  GitHubKit
 //
-//  Created by wujianguo on 16/7/21.
+//  Created by wujianguo on 16/7/27.
 //
 //
 
 import UIKit
 import GitHubKit
-import Alamofire
-import ObjectMapper
 
+class RepositoryViewController: UITableViewController {
 
-class RepositoryTableViewCell: PaginationTableViewCell<Repository> {
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
-    }
-
-    override func updateUI() {
-        if let name = item.name {
-            textLabel?.text = name
-        }
-        if let desc = item.description {
-            detailTextLabel?.text = desc
-        }
+    var repo: Repository! = nil
+    init(repo: Repository) {
+        super.init(style: .Grouped)
+        self.repo = repo
     }
     
-}
-
-
-class RepositoriesTableViewController: PaginationTableViewController<Repository> {
-
-    override init(style: UITableViewStyle) {
-        super.init(style: style)
-        tabBarItem = UITabBarItem(title: NSLocalizedString("Repositories", comment: ""), image: UIImage(named: "repositories"), tag: 0)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = repo.full_name
     }
 
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     // MARK: - Table view data source
 
-    override var loginRequired: Bool {
-        return true
-    }
-    
-    override var firstRequest: AuthorizationRequest {
-        return GitHubKit.currentUserReposRequest()
-    }
-    
-    override var tableViewCellIdentifier: String {
-        return "RepositoriesTableViewCellIdentifier"
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
-    override var tableViewCellClassType: AnyClass? {
-        return RepositoryTableViewCell.self
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
+
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

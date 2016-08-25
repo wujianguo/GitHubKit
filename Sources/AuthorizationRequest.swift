@@ -201,6 +201,55 @@ public class AuthorizationRequest {
         req?.responseArray(queue: queue, keyPath: keyPath, context: context, completionHandler: completionBlock)
     }
 
+    public func responseBoolen(queue queue: dispatch_queue_t? = nil, keyPath: String? = nil, completionHandler: Response<Bool, NSError> -> Void) {
+        let completionBlock: ((NSURLRequest?, NSHTTPURLResponse?, NSData?, NSError?) -> Void) = { (request, response, data, error) in
+            if let status = response?.statusCode {
+                if status == 204 || status == 404 {
+                    let result = Result<Bool, NSError>.Success(status == 204)
+                    let response = Response(
+                        request: request,
+                        response: response,
+                        data: data,
+                        result: result
+                    )
+                    completionHandler(response)
+                    return
+                }
+                let failureReason = NSHTTPURLResponse.localizedStringForStatusCode(status)
+                self.responseFailure(queue, failureReason: failureReason, code: status, completionHandler: completionHandler)
+                return
+            }
+            self.responseFailureError(queue, error: error!, completionHandler: completionHandler)
+        }
+
+        if loginRequired && !GitHubAuthorization.sharedInstance.validAuthorized {
+            dispatch_async(GitHubAuthorization.sharedInstance.queue) {
+                if !GitHubAuthorization.sharedInstance.validAuthorized {
+                    NSNotificationCenter.defaultCenter().addObserverForName(GitHubAuthorizationNotificationName, object: nil, queue: nil) { (notification) in
+                        NSNotificationCenter.defaultCenter().removeObserver(self, name: GitHubAuthorizationNotificationName, object: nil)
+                        if self.cancelled {
+                            self.responseFailure(queue, failureReason: "RequestCancelled", code: AuthorizationRequest.Code.RequestCancelled.rawValue, completionHandler: completionHandler)
+                            return
+                        }
+                        if !GitHubAuthorization.sharedInstance.validAuthorized {
+                            self.responseFailure(queue, failureReason: "RequestMissingAccessToken", code: AuthorizationRequest.Code.RequestMissingAccessToken.rawValue, completionHandler: completionHandler)
+                            return
+                        }
+                        self.req = self.request(self.url, eTag: self.eTag, lastModified: self.lastModified)
+                        self.req?.response(queue: queue, completionHandler: completionBlock)
+                    }
+                    GitHubAuthorization.sharedInstance.authorize()
+                } else {
+                    self.req = self.request(self.url, eTag: self.eTag, lastModified: self.lastModified)
+                    self.req?.response(queue: queue, completionHandler: completionBlock)
+                }
+            }
+            return
+        }
+        req = request(url, eTag: eTag, lastModified: lastModified)
+        req?.response(queue: queue, completionHandler: completionBlock)
+    }
+
     public static let Domain = "com.githubkit.error"
 
     public enum Code: Int {
@@ -211,6 +260,25 @@ public class AuthorizationRequest {
     func responseFailure<T> (queue: dispatch_queue_t? = nil, failureReason: String, code: Int, completionHandler: Response<T, NSError> -> Void) {
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         let error = NSError(domain: Error.Domain, code: code, userInfo: userInfo)
+        let result = Result<T, NSError>.Failure(error)
+        let response = Response(
+            request: req?.request,
+            response: nil,
+            data: nil,
+            result: result
+        )
+        if let q = queue {
+            dispatch_async(q) {
+                completionHandler(response)
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue()) {
+                completionHandler(response)
+            }
+        }
+    }
+
+    func responseFailureError<T> (queue: dispatch_queue_t? = nil, error: NSError, completionHandler: Response<T, NSError> -> Void) {
         let result = Result<T, NSError>.Failure(error)
         let response = Response(
             request: req?.request,

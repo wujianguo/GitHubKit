@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GitHubAccount.config("1234567890", scope: "user:email user:follow public_repo repo notifications read:org")
+        window?.backgroundColor = UIColor.whiteColor()
         return true
     }
 

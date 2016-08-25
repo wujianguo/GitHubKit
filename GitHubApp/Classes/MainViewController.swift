@@ -8,6 +8,16 @@
 
 import UIKit
 
+class BaseNavigationController: UINavigationController {
+
+    override func pushViewController(viewController: UIViewController, animated: Bool) {
+        if viewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true;
+        }
+        super.pushViewController(viewController, animated: animated)
+    }
+    
+}
 
 class MainViewController: UITabBarController {
 
@@ -22,11 +32,10 @@ class MainViewController: UITabBarController {
     }
     
     func setupViews() {
-        let newsNav = UINavigationController(rootViewController: NewsTableViewController(style: .Plain))
-//        let repoNav = UINavigationController(rootViewController: RepositoriesTableViewController(style: .Plain))
-
-        let exploreNav = UIStoryboard(name: "Explore", bundle: nil).instantiateInitialViewController()!
-        let profileNav = UIStoryboard(name: "Profile", bundle: nil).instantiateInitialViewController()!
+        let newsNav = BaseNavigationController(rootViewController: NewsTableViewController(style: .Plain))
+        let exploreNav = BaseNavigationController(rootViewController: ExploreTableViewController(style: .Plain))
+        let profileNav = BaseNavigationController(rootViewController: UserProfileTableViewController(style: .Grouped))
+        profileNav.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), tag: 0)
         viewControllers = [newsNav, exploreNav, profileNav]
     }
     

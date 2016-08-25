@@ -30,6 +30,7 @@ public class Gist: GitHubObject {
     public var updated_at: NSDate?
     public var user: User?
     public var organization: Organization?
+    public var profile: Profile?
     
     required public init?(_ map: Map) {
         super.init(map)
@@ -56,10 +57,12 @@ public class Gist: GitHubObject {
 
         if let owner = map.JSONDictionary["owner"] as? [String: AnyObject] {
             if let type = owner["type"] as? String {
-                if type == "user" {
+                if type == "User" {
                     user <- map["owner"]
+                    profile = user
                 } else if type == "Organization" {
                     organization <- map["owner"]
+                    profile = organization
                 }
             }
         }

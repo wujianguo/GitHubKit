@@ -78,6 +78,7 @@ public class Repository: GitHubObject {
 
     public var user: User?
     public var organization: Organization?
+    public var profile: Profile?
 
     required public init?(_ map: Map) {
         super.init(map)
@@ -152,10 +153,12 @@ public class Repository: GitHubObject {
 
         if let owner = map.JSONDictionary["owner"] as? [String: AnyObject] {
             if let type = owner["type"] as? String {
-                if type == "user" {
+                if type == "User" {
                     user <- map["owner"]
+                    profile = user
                 } else if type == "Organization" {
                     organization <- map["owner"]
+                    profile = organization
                 }
             }
         }
@@ -195,9 +198,9 @@ extension RootEndpoint {
         return AuthorizationRequest(url: uri.expandOptional(["user": user, "type": type != nil ? "\(type!)" : nil, "sort": sort != nil ? "\(sort!)" : nil]))
     }
 
-    func orgReposRequest(type: RepositoryType? = nil) -> AuthorizationRequest {
-        let uri = URITemplate(template: user_repositories_url!)
-        return AuthorizationRequest(url: uri.expandOptional(["type": type != nil ? "\(type!)" : nil]))
+    func orgReposRequest(org: String, type: RepositoryType? = nil) -> AuthorizationRequest {
+        let uri = URITemplate(template: organization_repositories_url!)
+        return AuthorizationRequest(url: uri.expandOptional(["org": org, "type": type != nil ? "\(type!)" : nil]))
     }
 }
 
@@ -213,7 +216,7 @@ public func userReposRequest(user: String, type: RepositoryType? = nil, sort: Re
     return Manager.sharedInstance.rootEndpoint.userReposRequest(user, type: type, sort: sort)
 }
 
-public func orgReposRequest(type: RepositoryType? = nil) -> AuthorizationRequest {
-    return Manager.sharedInstance.rootEndpoint.orgReposRequest(type)
+public func orgReposRequest(org: String, type: RepositoryType? = nil) -> AuthorizationRequest {
+    return Manager.sharedInstance.rootEndpoint.orgReposRequest(org, type: type)
 }
 
