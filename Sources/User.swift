@@ -55,6 +55,13 @@ public class Profile: GitHubObject {
     }
 }
 
+public extension Profile {
+
+    public func updateSelfRequest() -> AuthorizationRequest {
+        return AuthorizationRequest(url: url!)
+    }
+}
+
 public class User: Profile {
     
     public var gravatar_id: String?
@@ -92,6 +99,7 @@ public class User: Profile {
     }
 }
 
+
 public extension User {
 
     public func followersRequest() -> AuthorizationRequest {
@@ -107,6 +115,7 @@ public extension User {
         let uri = URITemplate(template: starred_url!)
         return AuthorizationRequest(url: uri.expandOptional(["owner": owner, "repo": repo]))
     }
+
 }
 
 extension RootEndpoint {

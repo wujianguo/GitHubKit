@@ -8,7 +8,8 @@
 
 import UIKit
 import GitHubKit
-
+import Alamofire
+import ObjectMapper
 
 class UserProfileTableViewController: ProfileTableViewController {
 
@@ -43,13 +44,27 @@ class UserProfileTableViewController: ProfileTableViewController {
                 checkfollowUserRequest(user!.login!).responseBoolen { (response) in
                     self.isFollowing = response.result.value
                 }
+                if let name = user?.name {
+                    title = name
+                } else {
+                    user?.updateSelfRequest().responseObject { (response: Response<User, NSError>) in
+                        guard response.result.isSuccess else { return }
+                        self.user?.eTag = response.result.value?.eTag
+                        self.user?.lastModified = response.result.value?.lastModified
+                        if let json = response.result.value?.toJSON() {
+                            self.user?.mapping(Map(mappingType: .FromJSON, JSONDictionary: json))
+                            self.profileView.updateUI(self.user!)
+                            self.title = self.user?.name
+                        }
+                    }
+                }
             }
         }
     }
 
     var isFollowing: Bool? {
         didSet {
-
+            profileView.isFollowing = isFollowing
         }
     }
 
@@ -63,9 +78,15 @@ class UserProfileTableViewController: ProfileTableViewController {
     }
 
     func setupUI() {
-        let segmentedControl = UISegmentedControl(items: [NSLocalizedString("Followers", comment: ""), NSLocalizedString("Starred", comment: ""), NSLocalizedString("Following", comment: "")])
-        segmentedControl.addTarget(self, action: #selector(UserProfileTableViewController.segmentedControlValueChanged(_:)), forControlEvents: .ValueChanged)
-        navigationItem.titleView = segmentedControl
+        profileView.updateUI(user!)
+        profileView.followersButton.addTarget(self, action: #selector(UserProfileTableViewController.performToFollowers), forControlEvents: .TouchUpInside)
+        profileView.followingButton.addTarget(self, action: #selector(UserProfileTableViewController.performToFollowing), forControlEvents: .TouchUpInside)
+        profileView.starredButton.addTarget(self, action: #selector(UserProfileTableViewController.performToStarred), forControlEvents: .TouchUpInside)
+
+        if user?.name == GitHubKit.currentUser?.name {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: #selector(UserProfileTableViewController.performToSettings))
+        }
+
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
         refreshControl?.beginRefreshing()
@@ -73,12 +94,10 @@ class UserProfileTableViewController: ProfileTableViewController {
         dataSource.firstRequest = GitHubKit.userReposRequest(self.user!.login!)
         tableView.registerClass(RepositoryTableViewCell.self, forCellReuseIdentifier: RepositoryTableViewCell.cellIdentifier)
         dataSource.refresh(tableView)
-
-//        title = "\(user!.name!)"
     }
 
-    lazy var dataSource: RepositoryTableViewDataSource = {
-        let ds = RepositoryTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshControl: self.refreshControl!, firstRequest: GitHubKit.userReposRequest(self.user!.login!))
+    lazy var dataSource: RepositoriesTableViewDataSource = {
+        let ds = RepositoriesTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshable: self.refreshControl!, firstRequest: GitHubKit.userReposRequest(self.user!.login!))
         return ds
     }()
 
@@ -86,14 +105,9 @@ class UserProfileTableViewController: ProfileTableViewController {
         dataSource.refresh(tableView)
     }
 
-    func segmentedControlValueChanged(sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            performToFollowers()
-        } else if sender.selectedSegmentIndex == 1 {
-            performToStarred()
-        } else if sender.selectedSegmentIndex == 2 {
-            performToFollowing()
-        }
+    func performToSettings() {
+        let vc = SettingsTableViewController(style: .Grouped)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func performToFollowers() {

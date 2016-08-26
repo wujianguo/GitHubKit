@@ -9,15 +9,18 @@
 /* Begin PBXBuildFile section */
 		81062B861D6DB3CE00326A2C /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */; };
 		81062B991D6DB3E200326A2C /* OrganizationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */; };
-		81062BB11D6E92C800326A2C /* RepositoryTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BB01D6E92C800326A2C /* RepositoryTableViewDataSource.swift */; };
+		81062BB11D6E92C800326A2C /* RepositoriesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BB01D6E92C800326A2C /* RepositoriesTableViewDataSource.swift */; };
 		81062BB31D6E935200326A2C /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BB21D6E935200326A2C /* RepositoryTableViewCell.swift */; };
 		81062BB81D6E959900326A2C /* PaginationTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BB71D6E959900326A2C /* PaginationTableViewDataSource.swift */; };
 		81062BBA1D6E976800326A2C /* PaginationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BB91D6E976800326A2C /* PaginationTableViewCell.swift */; };
-		81062BBD1D6EA6B800326A2C /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BBC1D6EA6B800326A2C /* PersonTableViewCell.swift */; };
-		81062BBF1D6EC49900326A2C /* PeopleTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BBE1D6EC49900326A2C /* PeopleTableViewDataSource.swift */; };
-		81062BC11D6EC82400326A2C /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BC01D6EC82400326A2C /* PeopleTableViewController.swift */; };
 		81062BC41D6EF28E00326A2C /* RepositoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BC21D6EF28E00326A2C /* RepositoriesTableViewController.swift */; };
 		81062BC51D6EF28E00326A2C /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BC31D6EF28E00326A2C /* RepositoryViewController.swift */; };
+		81062BCF1D6FE63900326A2C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BCE1D6FE63900326A2C /* SettingsTableViewController.swift */; };
+		81062BE51D7028D200326A2C /* EventsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BE41D7028D200326A2C /* EventsTableViewDataSource.swift */; };
+		81062BE71D70291300326A2C /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BE61D70291300326A2C /* EventTableViewCell.swift */; };
+		81062BEC1D702EFB00326A2C /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BE91D702EFB00326A2C /* PeopleTableViewController.swift */; };
+		81062BED1D702EFB00326A2C /* PeopleTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BEA1D702EFB00326A2C /* PeopleTableViewDataSource.swift */; };
+		81062BEE1D702EFB00326A2C /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81062BEB1D702EFB00326A2C /* PersonTableViewCell.swift */; };
 		8119C5A41D3FC28D004B5CC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8119C5A31D3FC28D004B5CC1 /* AppDelegate.swift */; };
 		8119C5AB1D3FC28D004B5CC1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8119C5A91D3FC28D004B5CC1 /* Main.storyboard */; };
 		8119C5AD1D3FC28D004B5CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8119C5AC1D3FC28D004B5CC1 /* Assets.xcassets */; };
@@ -84,7 +87,6 @@
 		81D6A9ED1D446BD400C2EDE0 /* WebLinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6A9EB1D446BD400C2EDE0 /* WebLinking.swift */; };
 		81D6A9EE1D446BD400C2EDE0 /* WebLinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6A9EB1D446BD400C2EDE0 /* WebLinking.swift */; };
 		81D6A9EF1D446BD400C2EDE0 /* WebLinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6A9EB1D446BD400C2EDE0 /* WebLinking.swift */; };
-		81D6A9F31D44C69300C2EDE0 /* PaginationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6A9F21D44C69300C2EDE0 /* PaginationTableViewController.swift */; };
 		81D6A9F51D45067600C2EDE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6A9F41D45067600C2EDE0 /* MainViewController.swift */; };
 		81DB1AF91D221AA5007F114B /* GitHubKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DB1AF81D221AA5007F114B /* GitHubKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81DB1AFA1D221AA5007F114B /* GitHubKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DB1AF81D221AA5007F114B /* GitHubKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -326,15 +328,18 @@
 /* Begin PBXFileReference section */
 		81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationTableViewController.swift; sourceTree = "<group>"; };
-		81062BB01D6E92C800326A2C /* RepositoryTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewDataSource.swift; sourceTree = "<group>"; };
+		81062BB01D6E92C800326A2C /* RepositoriesTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewDataSource.swift; sourceTree = "<group>"; };
 		81062BB21D6E935200326A2C /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		81062BB71D6E959900326A2C /* PaginationTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationTableViewDataSource.swift; sourceTree = "<group>"; };
 		81062BB91D6E976800326A2C /* PaginationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationTableViewCell.swift; sourceTree = "<group>"; };
-		81062BBC1D6EA6B800326A2C /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
-		81062BBE1D6EC49900326A2C /* PeopleTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewDataSource.swift; sourceTree = "<group>"; };
-		81062BC01D6EC82400326A2C /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		81062BC21D6EF28E00326A2C /* RepositoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewController.swift; sourceTree = "<group>"; };
 		81062BC31D6EF28E00326A2C /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
+		81062BCE1D6FE63900326A2C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		81062BE41D7028D200326A2C /* EventsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewDataSource.swift; sourceTree = "<group>"; };
+		81062BE61D70291300326A2C /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		81062BE91D702EFB00326A2C /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
+		81062BEA1D702EFB00326A2C /* PeopleTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewDataSource.swift; sourceTree = "<group>"; };
+		81062BEB1D702EFB00326A2C /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		8119C5A11D3FC28D004B5CC1 /* GitHubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8119C5A31D3FC28D004B5CC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8119C5AA1D3FC28D004B5CC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -362,7 +367,6 @@
 		81CA4DF11D22C0620045F873 /* Fork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fork.swift; sourceTree = "<group>"; };
 		81CA4DF61D22C0DC0045F873 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		81D6A9EB1D446BD400C2EDE0 /* WebLinking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLinking.swift; sourceTree = "<group>"; };
-		81D6A9F21D44C69300C2EDE0 /* PaginationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationTableViewController.swift; sourceTree = "<group>"; };
 		81D6A9F41D45067600C2EDE0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		81DB1AC31D2218EC007F114B /* GitHubKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DB1AD11D221909007F114B /* GitHubKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GitHubKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -473,7 +477,7 @@
 			children = (
 				81062BC21D6EF28E00326A2C /* RepositoriesTableViewController.swift */,
 				81062BC31D6EF28E00326A2C /* RepositoryViewController.swift */,
-				81062BB01D6E92C800326A2C /* RepositoryTableViewDataSource.swift */,
+				81062BB01D6E92C800326A2C /* RepositoriesTableViewDataSource.swift */,
 				81062BB21D6E935200326A2C /* RepositoryTableViewCell.swift */,
 			);
 			path = Repository;
@@ -488,14 +492,23 @@
 			path = Pagination;
 			sourceTree = "<group>";
 		};
-		81062BBB1D6EA68E00326A2C /* People */ = {
+		81062BE31D7028AB00326A2C /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				81062BBE1D6EC49900326A2C /* PeopleTableViewDataSource.swift */,
-				81062BBC1D6EA6B800326A2C /* PersonTableViewCell.swift */,
-				81062BC01D6EC82400326A2C /* PeopleTableViewController.swift */,
+				81062BE41D7028D200326A2C /* EventsTableViewDataSource.swift */,
+				81062BE61D70291300326A2C /* EventTableViewCell.swift */,
 			);
-			path = People;
+			path = Event;
+			sourceTree = "<group>";
+		};
+		81062BE81D702EFB00326A2C /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				81062BE91D702EFB00326A2C /* PeopleTableViewController.swift */,
+				81062BEA1D702EFB00326A2C /* PeopleTableViewDataSource.swift */,
+				81062BEB1D702EFB00326A2C /* PersonTableViewCell.swift */,
+			);
+			path = Person;
 			sourceTree = "<group>";
 		};
 		8119C5A21D3FC28D004B5CC1 /* GitHubApp */ = {
@@ -511,12 +524,12 @@
 		815A31AF1D40A0C500E170AF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				81062BBB1D6EA68E00326A2C /* People */,
+				81D6A9F41D45067600C2EDE0 /* MainViewController.swift */,
+				81062BE81D702EFB00326A2C /* Person */,
+				81062BE31D7028AB00326A2C /* Event */,
 				81062BB61D6E958200326A2C /* Pagination */,
 				81062BAF1D6E929F00326A2C /* Repository */,
 				815E2E3F1D4701D20042B0CE /* Authorization */,
-				81D6A9F41D45067600C2EDE0 /* MainViewController.swift */,
-				81D6A9F21D44C69300C2EDE0 /* PaginationTableViewController.swift */,
 				815A31B61D40DC5000E170AF /* News */,
 				815A31B51D40DC5000E170AF /* Explore */,
 				815A31B71D40DC5000E170AF /* Profile */,
@@ -559,6 +572,7 @@
 				815A31C71D40DD6100E170AF /* ProfileTableViewController.swift */,
 				81062B851D6DB3CE00326A2C /* UserProfileTableViewController.swift */,
 				81062B981D6DB3E200326A2C /* OrganizationTableViewController.swift */,
+				81062BCE1D6FE63900326A2C /* SettingsTableViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1172,17 +1186,19 @@
 				81062BC41D6EF28E00326A2C /* RepositoriesTableViewController.swift in Sources */,
 				81062BC51D6EF28E00326A2C /* RepositoryViewController.swift in Sources */,
 				815A31C81D40DD6100E170AF /* ProfileTableViewController.swift in Sources */,
-				81D6A9F31D44C69300C2EDE0 /* PaginationTableViewController.swift in Sources */,
 				815E2E431D4702850042B0CE /* GitHubAccount.swift in Sources */,
-				81062BBF1D6EC49900326A2C /* PeopleTableViewDataSource.swift in Sources */,
 				81062BB31D6E935200326A2C /* RepositoryTableViewCell.swift in Sources */,
+				81062BED1D702EFB00326A2C /* PeopleTableViewDataSource.swift in Sources */,
 				815A31C41D40DD3600E170AF /* ExploreTableViewController.swift in Sources */,
 				815A31BC1D40DCB000E170AF /* NewsTableViewController.swift in Sources */,
 				81062B991D6DB3E200326A2C /* OrganizationTableViewController.swift in Sources */,
-				81062BB11D6E92C800326A2C /* RepositoryTableViewDataSource.swift in Sources */,
+				81062BB11D6E92C800326A2C /* RepositoriesTableViewDataSource.swift in Sources */,
 				81062B861D6DB3CE00326A2C /* UserProfileTableViewController.swift in Sources */,
-				81062BBD1D6EA6B800326A2C /* PersonTableViewCell.swift in Sources */,
-				81062BC11D6EC82400326A2C /* PeopleTableViewController.swift in Sources */,
+				81062BCF1D6FE63900326A2C /* SettingsTableViewController.swift in Sources */,
+				81062BE51D7028D200326A2C /* EventsTableViewDataSource.swift in Sources */,
+				81062BE71D70291300326A2C /* EventTableViewCell.swift in Sources */,
+				81062BEC1D702EFB00326A2C /* PeopleTableViewController.swift in Sources */,
+				81062BEE1D702EFB00326A2C /* PersonTableViewCell.swift in Sources */,
 				8119C5A41D3FC28D004B5CC1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

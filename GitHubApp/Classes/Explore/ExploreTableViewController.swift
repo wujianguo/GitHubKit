@@ -38,8 +38,8 @@ class ExploreTableViewController: UITableViewController {
         dataSource.refresh(tableView)
     }
 
-    lazy var dataSource: RepositoryTableViewDataSource = {
-        let ds = RepositoryTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshControl: self.refreshControl!, firstRequest: GitHubKit.currentUserReposRequest())
+    lazy var dataSource: RepositoriesTableViewDataSource = {
+        let ds = RepositoriesTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshable: self.refreshControl!, firstRequest: GitHubKit.currentUserReposRequest())
         return ds
     }()
 

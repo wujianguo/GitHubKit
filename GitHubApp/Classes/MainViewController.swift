@@ -36,6 +36,7 @@ class MainViewController: UITabBarController {
         let exploreNav = BaseNavigationController(rootViewController: ExploreTableViewController(style: .Plain))
         let profileNav = BaseNavigationController(rootViewController: UserProfileTableViewController(style: .Grouped))
         profileNav.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), tag: 0)
+        profileNav.visibleViewController?.title = NSLocalizedString("Profile", comment: "")
         viewControllers = [newsNav, exploreNav, profileNav]
     }
     

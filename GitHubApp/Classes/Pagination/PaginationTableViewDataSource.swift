@@ -11,12 +11,21 @@ import GitHubKit
 import ObjectMapper
 import Alamofire
 
+protocol PaginationTableViewDataSourceRefreshable: class {
+    var refreshing: Bool { get }
+    func endRefreshing()
+}
+
+extension UIRefreshControl: PaginationTableViewDataSourceRefreshable {
+
+}
+
 class PaginationTableViewDataSource<T: Mappable>: NSObject, UITableViewDataSource {
 
-    init(cellIdentifier: String, refreshControl: UIRefreshControl, firstRequest: AuthorizationRequest) {
+    init(cellIdentifier: String, refreshable: PaginationTableViewDataSourceRefreshable, firstRequest: AuthorizationRequest) {
         super.init()
         self.cellIdentifier = cellIdentifier
-        self.refreshControl = refreshControl
+        self.refreshable = refreshable
         self.firstRequest = firstRequest
     }
 
@@ -28,8 +37,7 @@ class PaginationTableViewDataSource<T: Mappable>: NSObject, UITableViewDataSourc
 
     var cellIdentifier: String = ""
     
-    var refreshControl: UIRefreshControl?
-
+    weak var refreshable: PaginationTableViewDataSourceRefreshable?
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -62,7 +70,7 @@ class PaginationTableViewDataSource<T: Mappable>: NSObject, UITableViewDataSourc
     var currentRequest: AuthorizationRequest?
 
     func paginationNext(tableView: UITableView) {
-        guard !refreshControl!.refreshing else { return }
+        guard !refreshable!.refreshing else { return }
         guard nextPage != nil else { return }
 
         if let current = currentRequest?.url {
@@ -99,11 +107,11 @@ class PaginationTableViewDataSource<T: Mappable>: NSObject, UITableViewDataSourc
     }
 
     func refresh(tableView: UITableView) {
-        guard refreshControl!.refreshing else { return }
+        guard refreshable!.refreshing else { return }
         currentRequest?.cancel()
         currentRequest = AuthorizationRequest(url: firstRequest.url, eTag: firstPageEtag, lastModified: firstPageLastModified, loginRequired: loginRequired)
         currentRequest!.responseArray { (response: Response<GitHubArray<T>, NSError>) in
-            self.refreshControl?.endRefreshing()
+            self.refreshable?.endRefreshing()
             if let ret = response.result.value {
                 self.firstPageEtag = ret.eTag
                 self.firstPageLastModified = ret.lastModified

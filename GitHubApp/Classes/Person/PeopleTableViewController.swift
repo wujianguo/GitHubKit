@@ -33,7 +33,7 @@ class PeopleTableViewController: UITableViewController {
     }
 
     lazy var dataSource: PeopleTableViewDataSource = {
-        let ds = PeopleTableViewDataSource(cellIdentifier: PersonTableViewCell.cellIdentifier, refreshControl: self.refreshControl!, firstRequest: self.firstRequest)
+        let ds = PeopleTableViewDataSource(cellIdentifier: PersonTableViewCell.cellIdentifier, refreshable: self.refreshControl!, firstRequest: self.firstRequest)
         return ds
     }()
 

@@ -20,78 +20,140 @@ class RepositoryTableViewCell: PaginationTableViewCell<Repository> {
     static let cellIdentifier = "RepositoryTableViewCellIdentifier"
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     weak var delegate: RepositoryTableViewCellDelegate?
 
-    let avatarButton = UIButton()
-    let repoButton = UIButton()
-    let descriptionLabel = UILabel()
-    let starImageView = UIImageView()
-    let starNumLabel = UILabel()
+    lazy var ownerButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(RepositoryTableViewCell.performToProfile), forControlEvents: .TouchUpInside)
+        button.titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        button.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        return button
+    }()
+
+    lazy var repoButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(RepositoryTableViewCell.performToRepo), forControlEvents: .TouchUpInside)
+        button.titleLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        button.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        return button
+    }()
+
+    lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        return label
+    }()
+
+    lazy var languageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
+        return label
+    }()
+
+    lazy var forkNumLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
+        return label
+    }()
+
+    lazy var starNumLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)
+        return label
+    }()
+
+    lazy var forkImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "fork"))
+        imageView.snp_makeConstraints { (make) in
+            make.width.height.equalTo(16)
+        }
+        return imageView
+    }()
+
+    lazy var starImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "star"))
+        imageView.snp_makeConstraints { (make) in
+            make.width.height.equalTo(16)
+        }
+        return imageView
+    }()
 
     override func setupUI() {
         super.setupUI()
-        /*
-        avatarButton.addTarget(self, action: #selector(RepositoryTableViewCell.performToUser), forControlEvents: .TouchUpInside)
-        contentView.addSubview(avatarButton)
-        avatarButton.snp_makeConstraints { (make) in
-            make.leading.equalTo(self.contentView.snp_leadingMargin)
-            make.top.equalTo(self.contentView.snp_topMargin)
-            make.width.height.equalTo(50)
+        let stackView = UIStackView()
+        stackView.axis = .Vertical
+        stackView.alignment = .Leading
+        stackView.spacing = 8
+        contentView.addSubview(stackView)
+        stackView.snp_makeConstraints { (make) in
+            make.edges.equalTo(self.contentView).inset(UIEdgeInsetsMake(4, 8, 4, 8))
         }
-        repoButton.addTarget(self, action: #selector(RepositoryTableViewCell.performToRepo), forControlEvents: .TouchUpInside)
-        repoButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        contentView.addSubview(repoButton)
-        repoButton.snp_makeConstraints { (make) in
-            make.top.equalTo(avatarButton.snp_top)
-            make.leading.equalTo(avatarButton.snp_trailing).offset(8)
-        }
-        contentView.addSubview(starImageView)
-        starImageView.snp_makeConstraints { (make) in
-            make.top.equalTo(avatarButton.snp_top)
-            make.trailing.equalTo(self.contentView.snp_trailingMargin)
-            make.centerY.equalTo(repoButton.snp_centerY)
-        }
-        contentView.addSubview(starNumLabel)
-        starNumLabel.snp_makeConstraints { (make) in
-            make.trailing.equalTo(starImageView.snp_trailingMargin)
-            make.centerY.equalTo(starImageView.snp_centerY)
-        }
-        descriptionLabel.numberOfLines = 0
-        contentView.addSubview(descriptionLabel)
-        descriptionLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(repoButton.snp_bottomMargin)
-            make.leading.equalTo(repoButton.snp_leading)
-            make.trailing.equalTo(self.contentView.snp_trailingMargin)
-        }
-        */
+
+        let top = UIStackView()
+        top.axis = .Horizontal
+        top.addArrangedSubview(ownerButton)
+        let label = UILabel()
+        label.text = "/"
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        top.addArrangedSubview(label)
+        top.addArrangedSubview(repoButton)
+
+        let bottom = UIStackView()
+        bottom.spacing = 4
+        bottom.axis = .Horizontal
+        bottom.addArrangedSubview(languageLabel)
+        bottom.addArrangedSubview(starNumLabel)
+        bottom.addArrangedSubview(starImageView)
+        bottom.addArrangedSubview(forkNumLabel)
+        bottom.addArrangedSubview(forkImageView)
+
+        stackView.addArrangedSubview(top)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(bottom)
     }
 
     override func updateUI() {
         super.updateUI()
-        textLabel?.text = item.full_name
-        detailTextLabel?.text = item.description
-
-//        repoButton.setTitle(item.full_name, forState: .Normal)
-//        descriptionLabel.text = item.description
-//        if let num = item.stargazers_count {
-//            starNumLabel.text = "\(num)"
-//        }
-        if let url = item.profile?.avatar_url {
-//            avatarButton.kf_cancelImageDownloadTask()
-//            avatarButton.kf_setImageWithURL(NSURL(string: url), forState: .Normal, placeholderImage: UIImage.defaultAvatar)
-            imageView?.kf_cancelDownloadTask()
-            imageView?.kf_setImageWithURL(NSURL(string: url), placeholderImage: UIImage.defaultAvatar)
+        ownerButton.setTitle(item.profile?.login, forState: .Normal)
+        repoButton.setTitle(item.name, forState: .Normal)
+        descriptionLabel.text = item.description
+        languageLabel.text = item.language
+        if let count = item.stargazers_count {
+            starNumLabel.text = "\(count)"
+        }
+        if let count = item.forks_count {
+            forkNumLabel.text = "\(count)"
         }
     }
 
-    func performToUser() {
+    func performToProfile() {
         delegate?.repositoryTableViewCellPerformToProfile(item)
     }
 
     func performToRepo() {
         delegate?.repositoryTableViewCellPerformToRepo(item)
+    }
+}
+
+
+class MixedRepositoryTableViewCell: PaginationTableViewCell<Repository> {
+
+    static let cellIdentifier = "MixedRepositoryTableViewCellIdentifier"
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+}
+
+class UserRepositoryTableViewCell: PaginationTableViewCell<Repository> {
+
+    static let cellIdentifier = "UserRepositoryTableViewCellIdentifier"
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }

@@ -32,12 +32,12 @@ class RepositoriesTableViewController: UITableViewController, RepositoryTableVie
         tableView.registerClass(RepositoryTableViewCell.self, forCellReuseIdentifier: RepositoryTableViewCell.cellIdentifier)
         dataSource.refresh(tableView)
 
-//        tableView.rowHeight = 80
-//        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 120
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
     }
 
-    lazy var dataSource: RepositoryTableViewDataSource = {
-        let ds = RepositoryTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshControl: self.refreshControl!, firstRequest: self.firstRequest)
+    lazy var dataSource: RepositoriesTableViewDataSource = {
+        let ds = RepositoriesTableViewDataSource(cellIdentifier: RepositoryTableViewCell.cellIdentifier, refreshable: self.refreshControl!, firstRequest: self.firstRequest)
         return ds
     }()
 
@@ -46,8 +46,8 @@ class RepositoriesTableViewController: UITableViewController, RepositoryTableVie
     }
 
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if let c = cell as? RepositoryTableViewCell {
-            c.delegate = self
+        if let cell = cell as? RepositoryTableViewCell {
+            cell.delegate = self
         }
     }
 
