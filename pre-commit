@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "check app key"
+a=`grep -i 'GitHubAccount.config' GitHubApp/AppDelegate.swift -c`
+if [ $a != 1 ]
+then
+	echo "error 1, You should not contain app key in AppDelegate.swift"
+	exit 1
+fi
+
+grep -i 'GitHubAccount.config("1234567890"' GitHubApp/AppDelegate.swift > /dev/null
+if [ $? != 0 ]
+then
+	echo "error 2, You should not contain app key in AppDelegate.swift"
+	exit 1
+fi

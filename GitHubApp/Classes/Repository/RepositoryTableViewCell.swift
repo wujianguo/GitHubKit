@@ -96,10 +96,6 @@ class RepositoryTableViewCell: PaginationTableViewCell<Repository> {
         let top = UIStackView()
         top.axis = .Horizontal
         top.addArrangedSubview(ownerButton)
-        let label = UILabel()
-        label.text = "/"
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
-        top.addArrangedSubview(label)
         top.addArrangedSubview(repoButton)
 
         let bottom = UIStackView()
@@ -118,7 +114,7 @@ class RepositoryTableViewCell: PaginationTableViewCell<Repository> {
 
     override func updateUI() {
         super.updateUI()
-        ownerButton.setTitle(item.profile?.login, forState: .Normal)
+        ownerButton.setTitle("\(item.profile!.login!)/", forState: .Normal)
         repoButton.setTitle(item.name, forState: .Normal)
         descriptionLabel.text = item.description
         languageLabel.text = item.language

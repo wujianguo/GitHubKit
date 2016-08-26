@@ -226,6 +226,9 @@ class ProfileHeadView: UIView {
 class ProfileTableViewController: UITableViewController, RepositoryTableViewCellDelegate {
 
     var profileView: ProfileHeadView!
+    var profile: Profile? {
+        return nil
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         profileView = ProfileHeadView(frame: CGRectMake(0, 0, 1, 280))
@@ -246,14 +249,15 @@ class ProfileTableViewController: UITableViewController, RepositoryTableViewCell
     }
 
     func repositoryTableViewCellPerformToProfile(repo: Repository) {
-        var vc: ProfileTableViewController?
-        if let user = repo.user {
-            vc = UserProfileTableViewController(user: user)
-        } else if let org = repo.organization {
-            vc = OrganizationTableViewController(org: org)
-        }
-        if let v = vc {
-            navigationController?.pushViewController(v, animated: true)
-        }
+//        guard repo.profile?.login != profile?.login else { return }
+//        var vc: ProfileTableViewController?
+//        if let user = repo.user {
+//            vc = UserProfileTableViewController(user: user)
+//        } else if let org = repo.organization {
+//            vc = OrganizationTableViewController(org: org)
+//        }
+//        if let v = vc {
+//            navigationController?.pushViewController(v, animated: true)
+//        }
     }
 }

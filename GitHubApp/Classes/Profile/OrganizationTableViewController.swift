@@ -13,6 +13,10 @@ import Alamofire
 
 class OrganizationTableViewController: ProfileTableViewController {
 
+    override var profile: Profile? {
+        return org
+    }
+
     var org: Organization! = nil
     init(org: Organization) {
         super.init(style: .Grouped)

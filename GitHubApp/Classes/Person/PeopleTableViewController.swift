@@ -40,4 +40,10 @@ class PeopleTableViewController: UITableViewController {
     func refresh() {
         dataSource.refresh(tableView)
     }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = dataSource.items[indexPath.row]
+        let vc = UserProfileTableViewController(user: user)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

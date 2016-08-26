@@ -13,6 +13,10 @@ import ObjectMapper
 
 class UserProfileTableViewController: ProfileTableViewController {
 
+    override var profile: Profile? {
+        return user
+    }
+
     var user: User?
     init(user: User?) {
         super.init(style: .Grouped)
